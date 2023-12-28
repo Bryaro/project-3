@@ -12,8 +12,18 @@ def create_board():
             row.append(" ")
         board.append(row)
     return board
-print("table/board for Tic Tac&\n")
+print("Table/board for Tic-Tac-Toe")
 
-board = create_board()
-for row in board:
-    print(row)
+
+def add_list_on_list():
+    """
+    add lists on eachother 
+    so it represent a 3x3 grid 
+    to look more like Tic-Tac-Toe board
+    """
+    board = create_board()
+    for row in board:
+        print(row)
+
+list_block = add_list_on_list()
+print(list_block)
