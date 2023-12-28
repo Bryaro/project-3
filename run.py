@@ -4,6 +4,14 @@ def create_board():
     """
     function for creating Tic-Tac_Toe table/board
     """
-    print("table/board for Tic Tac&\n")
+    board = []
+    
+    for i in range(3):
+        row = []
+        for j in range(3):
+            row.append(" ")
+        board.append(row)
+    return board
+print("table/board for Tic Tac&\n")
 
-create_board()
+board = create_board()
