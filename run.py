@@ -3,6 +3,9 @@ import random
 def create_board():
     """
     function for creating Tic-Tac_Toe table/board
+    Return a 3x3 Tic-Tac-Toe board numbered from 1 to 9.
+    Each cell of the grid is filled with a number, starting from 1 in the
+    top-left cell and ending with 9 in the bottom-right cell.
     """
     board = []
     cell_number = 1
