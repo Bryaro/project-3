@@ -5,11 +5,12 @@ def create_board():
     function for creating Tic-Tac_Toe table/board
     """
     board = []
-    
+    cell_number = 1
     for i in range(3):
         row = []
         for j in range(3):
-            row.append(" ")
+            row.append(cell_number)
+            cell_number += 1
         board.append(row)
     return board
 print("Table/board for Tic-Tac-Toe")
