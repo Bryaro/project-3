@@ -15,3 +15,5 @@ def create_board():
 print("table/board for Tic Tac&\n")
 
 board = create_board()
+for row in board:
+    print(row)
