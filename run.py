@@ -45,7 +45,7 @@ def player_turn(board):
         print("\nplayer turn working\n")
         try:
             turn = int(input("Enter a number 1-9:"))
-            row = (turn - 1) // 1 
+            row = (turn - 1) // 3 
             col = (turn - 1) % 3
             if board[row][col] == turn:
                 board[row][col] = "X"
