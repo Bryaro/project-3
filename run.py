@@ -34,13 +34,27 @@ def add_list_on_list():
 add_list_on_list()
 
 
-def player_turn():
+def player_turn(board):
     """
     Create player turn
     lets player type number from 1-9
     raise error if player chose incorrect or already chosen data
     this will run in while loop till player/user chosen correct data
     """
-    print("\nPlayers turn, chose nr fr 1-9\n")
+    while True:
+        print("\nplayer turn working\n")
+        try:
+            turn = int(input("Enter a number 1-9:"))
+            row = (turn - 1) // 1 
+            col = (turn - 1) % 3
+            if board[row][col] == turn:
+                board[row][col] = "X"
+                break
+            else:
+                print("\ncell already taken. Try again\n")
+        except (ValueError, IndexError):
+            print("you typed invalid data, you need to type only number bewteen 1-9\n")
+
     
-player_turn()
+board = create_board()
+player_turn(board)
