@@ -21,18 +21,10 @@ def create_board():
 print("\nTable/board for Tic-Tac-Toe\n")
 
 
-def add_list_on_list():
-    """
-    add lists on eachother 
-    so it represent a 3x3 grid 
-    to look more like Tic-Tac-Toe board
-    """
-    board = create_board()
+def print_board(board):
     for row in board:
-        print(row)
-
-add_list_on_list()
-
+        print(" | ".join(str(cell) for cell in row))
+        print("--" + "+-" + "--" + "+--")
 
 def player_turn(board):
     """
@@ -70,5 +62,6 @@ def computer_turn(board):
                 break
     
 board = create_board()
+print_board(board)
 player_turn(board)
 computer_turn(board)
