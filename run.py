@@ -22,6 +22,14 @@ print("\nTable/board for Tic-Tac-Toe\n")
 
 
 def print_board(board):
+    """
+    Display/Print to terminal
+    each cell is divided with " | "
+    each row is rivided with "--" + "+-" + "--" + "+--"
+    which will turn to a more visible display to user
+    Display will be more identical to Tic-Tac-Toe with each cell representing a number
+    and each number is representing a cell
+    """
     for row in board:
         print(" | ".join(str(cell) for cell in row))
         print("--" + "+-" + "--" + "+--")
