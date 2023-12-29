@@ -55,6 +55,20 @@ def player_turn(board):
         except (ValueError, IndexError):
             print("you typed invalid data, you need to type only number bewteen 1-9\n")
 
+def computer_turn(board):
+    """
+    Create computer turn
+    This function randomly selects a cell on the board for the computer's turn.
+    If the selected cell is unoccupied, it marks the cell with 'O'.
+    """
+    while True:
+            turn = int(input("Enter a number 1-9:"))
+            row = (turn - 1) // 3 
+            col = (turn - 1) % 3
+            if board[row][col] == turn:
+                board[row][col] = "O"
+                break
     
 board = create_board()
 player_turn(board)
+computer_turn(board)
