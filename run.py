@@ -62,7 +62,7 @@ def computer_turn(board):
     If the selected cell is unoccupied, it marks the cell with 'O'.
     """
     while True:
-            turn = int(input("Enter a number 1-9:"))
+            turn = random.randint(1, 9)
             row = (turn - 1) // 3 
             col = (turn - 1) % 3
             if board[row][col] == turn:
