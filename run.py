@@ -68,7 +68,24 @@ def computer_turn(board):
             if board[row][col] == turn:
                 board[row][col] = "O"
                 break
+
+def check_winner(board, player):
+    """
+    Check for winner (computer or user).
+    Args board for the current table, and player(the computer or the user)
+    """
+    for i in range(3):
+        if board[i][0] == player and board[i][1] == player and board[i][2] == player:
+            return True
+        if board[0][i] == player and board[1][i] == player and board[2][i] == player:
+            return True
+    if board[0][0] == player and board[1][1] == player and board[0][2] == player:
+        return True
+    if board[2][0] == player and board[1][1] == player and board[0][2] == player:
+        return True
     
+
+
 board = create_board()
 print_board(board)
 player_turn(board)
