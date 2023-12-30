@@ -83,8 +83,20 @@ def check_winner(board, player):
         return True
     if board[2][0] == player and board[1][1] == player and board[0][2] == player:
         return True
-    return print("\nTie, No winner!")
-    
+    return False
+
+def check_tie(board):
+    """
+    Checks for Tie
+    """
+    cell_count = 0
+    for row in board:
+        for cell in row:
+            if cell == "X" or cell == "O":
+                cell_count += 1
+    return cell_count == 9
+
+
 
 def main():
     """
@@ -98,13 +110,23 @@ def main():
         player_turn(board)
         print("\nBoard after Player turn")
         print_board(board)
+
+        if check_tie(board):
+            print("ITS A TIE!!")
+            break
         if check_winner(board, "X"):
             print("\n You Win!")
             break
         
+        
         computer_turn(board)
         print("\nBoard after Computer turn")
         print_board(board)
+
+        if check_tie(board):
+            print("ITS A TIE!!")
+            break
+
         if check_winner(board, "O"):
             print("GAME OVER!")
             break
