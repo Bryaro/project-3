@@ -7,31 +7,34 @@ def create_board():
     top-left cell and ending with 9 in the bottom-right cell.
     Returns:
     list of lists: A 3x3 grid representing the Tic-Tac-Toe board,
-    with each cell numbered from 1 to 9.
+    with each cell numbered from 1 to 9..
     """
     board = []
     cell_number = 1
+
     for i in range(3):
         row = []
         for j in range(3):
             row.append(cell_number)
             cell_number += 1
         board.append(row)
+
     return board
 
 
 def print_board(board):
     """
     Display/Print to terminal
-    each cell is divided with " | "
+    each cell is divided with "  |  "
     each row is rivided with "--" + "+-" + "--" + "+--"
     which will turn to a more visible display to user
     Display will be more identical to Tic-Tac-Toe with each cell representing a number
     and each number is representing a cell
     """
     for row in board:
-        print(" | ".join(str(cell) for cell in row))
-        print("--" + "+-" + "--" + "+--")
+        print(" ┃ ".join(str(cell) for cell in row))
+        print("━" + "━╋━" + "━" + "━╋━━")
+
 
 def player_turn(board):
     """
@@ -42,9 +45,10 @@ def player_turn(board):
     """
     while True:
         try:
-            turn = int(input("\nYour Turn: Enter a number 1-9:"))
+            turn = int(input("\nYour Turn: Enter a number 1-9:\n"))
             row = (turn - 1) // 3 
             col = (turn - 1) % 3
+
             if board[row][col] == turn:
                 board[row][col] = "X"
                 break
@@ -52,6 +56,7 @@ def player_turn(board):
                 print("\ncell already taken. Try again\n")
         except (ValueError, IndexError):
             print("you typed invalid data, you need to type only number bewteen 1-9\n")
+
 
 def computer_turn(board):
     """
@@ -66,6 +71,7 @@ def computer_turn(board):
             if board[row][col] == turn:
                 board[row][col] = "O"
                 break
+
 
 def check_winner(board, player):
     """
@@ -83,17 +89,18 @@ def check_winner(board, player):
         return True
     return False
 
+
 def check_tie(board):
     """
     Checks for Tie
     """
     cell_count = 0
+
     for row in board:
         for cell in row:
             if cell == "X" or cell == "O":
                 cell_count += 1
     return cell_count == 9
-
 
 
 def main():
@@ -102,7 +109,7 @@ def main():
     """
     board = create_board()
     print("\nWelcome to the Tic Tac Toe Game!")
-    print("    HAVE FUN AND GOOD LUCK \n")
+    print("    HAVE FUN AND GOOD LUCK 😀\n")
     print_board(board)
 
     while True:
