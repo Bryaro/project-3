@@ -93,4 +93,12 @@ def main():
     print("\n Initial Tic Tac Toe board\n")
     print_board(board)
 
+    while True:
+        player_turn(board)
+        print("\nBoard after Player turn")
+        print_board(board)
+        if check_winner(board, "X"):
+            print("\n You Win!")
+
+
 main()
