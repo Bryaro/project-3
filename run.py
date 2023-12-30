@@ -85,8 +85,12 @@ def check_winner(board, player):
         return True
     
 
+def main():
+    """
+    Runs the main function for the Tic-Tac-Toe game.
+    """
+    board = create_board()
+    print("\n Initial Tic Tac Toe board\n")
+    print_board(board)
 
-board = create_board()
-print_board(board)
-player_turn(board)
-computer_turn(board)
+main()
