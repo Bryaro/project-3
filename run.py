@@ -83,6 +83,7 @@ def check_winner(board, player):
         return True
     if board[2][0] == player and board[1][1] == player and board[0][2] == player:
         return True
+    return print("\nTie, No winner!")
     
 
 def main():
@@ -99,6 +100,13 @@ def main():
         print_board(board)
         if check_winner(board, "X"):
             print("\n You Win!")
-
+            break
+        
+        computer_turn(board)
+        print("\nBoard after Computer turn")
+        print_board(board)
+        if check_winner(board, "O"):
+            print("GAME OVER!")
+            break
 
 main()
