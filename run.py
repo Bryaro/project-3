@@ -18,7 +18,6 @@ def create_board():
             cell_number += 1
         board.append(row)
     return board
-print("\nTable/board for Tic-Tac-Toe\n")
 
 
 def print_board(board):
@@ -42,9 +41,8 @@ def player_turn(board):
     this will run in while loop till player/user chosen correct data
     """
     while True:
-        print("\nplayer turn working\n")
         try:
-            turn = int(input("Enter a number 1-9:"))
+            turn = int(input("\nYour Turn: Enter a number 1-9:"))
             row = (turn - 1) // 3 
             col = (turn - 1) % 3
             if board[row][col] == turn:
@@ -103,31 +101,32 @@ def main():
     Runs the main function for the Tic-Tac-Toe game.
     """
     board = create_board()
-    print("\n Initial Tic Tac Toe board\n")
+    print("\nWelcome to the Tic Tac Toe Game!")
+    print("    HAVE FUN AND GOOD LUCK \n")
     print_board(board)
 
     while True:
         player_turn(board)
-        print("\nBoard after Player turn")
-        print_board(board)
-
+        
         if check_tie(board):
+            print_board(board)
             print("ITS A TIE!!")
             break
         if check_winner(board, "X"):
+            print_board(board)
             print("\n You Win!")
             break
         
-        
         computer_turn(board)
-        print("\nBoard after Computer turn")
+        print("\nBoard after Computers turn")
         print_board(board)
-
         if check_tie(board):
+            print_board(board)
             print("ITS A TIE!!")
             break
 
         if check_winner(board, "O"):
+            print_board(board)
             print("GAME OVER!")
             break
 
