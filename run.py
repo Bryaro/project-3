@@ -1,4 +1,5 @@
 import random
+import os
 
 def create_board():
     """
@@ -69,7 +70,7 @@ def computer_turn(board):
             row = (turn - 1) // 3 
             col = (turn - 1) % 3
             if board[row][col] == turn:
-                board[row][col] = "\33[91m" + "O" + "\33[0m"
+                board[row][col] = "O"
                 break
 
 
@@ -84,7 +85,7 @@ def check_winner(board, player):
         if board[0][i] == player and board[1][i] == player and board[2][i] == player:
             return True
     # diagonal 
-    if board[0][0] == player and board[1][1] == player and board[0][2] == player:
+    if board[0][0] == player and board[1][1] == player and board[2][2] == player:
         return True
     # diagonal
     if board[2][0] == player and board[1][1] == player and board[0][2] == player:
@@ -104,10 +105,22 @@ def check_tie(board):
     return cell_count == 9
 
 
+def clear_terminal():
+    """
+    Clears the terminal window prior to new content.
+    Original code from
+    http://www.coding4you.at/inf_tag/beginners_python_cheat_sheet.pdf
+    Recommended to me by Goran Sigeskog
+    https://github.com/gorsig
+    """
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
 def main():
     """
     Runs the main function for the Tic-Tac-Toe game.
     """
+    clear_terminal()
     board = create_board()
     print("\nWelcome to the Tic Tac Toe Game!")
     print("    HAVE FUN AND GOOD LUCK 😀\n")
@@ -115,7 +128,7 @@ def main():
 
     while True:
         player_turn(board)
-        
+        clear_terminal()
         if check_tie(board):
             print_board(board)
             print("ITS A TIE!!")
@@ -132,9 +145,7 @@ def main():
             print_board(board)
             print("ITS A TIE!!")
             break
-
         if check_winner(board, "O"):
-            print_board(board)
             print("GAME OVER!")
             break
 
