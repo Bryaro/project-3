@@ -2,6 +2,12 @@ import random
 import os
 
 
+green_color = "\033[92m"
+red_color ="\033[91m"
+default_color = "\033[0m"
+
+
+
 def create_board():
     """
     Create and return a 3x3 Tic-Tac-Toe board numbered from 1 to 9.
@@ -122,12 +128,8 @@ def game_menu():
     MENU START
     Show rules, play game. 
     """
-    green_color = "\033[92m"
-    red_color ="\033[91m"
-    default_color = "\033[0m"
-
     clear_terminal()
-    print(f"{green_color}\nWelcome to Tic-Tac-Toe! 😃{default_color}")
+    print(f"{green_color}\n     🆆 🅴 🅻 🅲 🅾 🅼 🅴{default_color}")
     print(f"{red_color}\n         Rules:          {default_color}")
     print("You are X, Computer is O.")
     print("You can only chose a number from 1-9.")
@@ -162,18 +164,25 @@ def main():
             break
         if check_winner(board, "X"):
             print_board(board)
-            print("\n You Win!")
+            print(f"{green_color}\n"
+                "██╗░░░██╗██╗░█████╗░████████╗░█████╗░██████╗░██╗░░░██╗██╗\n"
+                "██║░░░██║██║██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗╚██╗░██╔╝██║\n"
+                "╚██╗░██╔╝██║██║░░╚═╝░░░██║░░░██║░░██║██████╔╝░╚████╔╝░██║\n"
+                "░╚████╔╝░██║██║░░██╗░░░██║░░░██║░░██║██╔══██╗░░╚██╔╝░░╚═╝\n"
+                "░░╚██╔╝░░██║╚█████╔╝░░░██║░░░╚█████╔╝██║░░██║░░░██║░░░██╗\n"
+                "░░░╚═╝░░░╚═╝░╚════╝░░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝\n"
+                f"{default_color}")
             break
         
         computer_turn(board)
-        print("\nBoard after Computers turn")
+        print("\nBoard after Computers turn\n")
         print_board(board)
         if check_tie(board):
             print_board(board)
             print("ITS A TIE!!")
             break
         if check_winner(board, "O"):
-            print("GAME OVER!")
+            print(f"{red_color}𝔾𝔸𝕄𝔼 𝕆𝕍𝔼ℝ ❕{default_color}")
             break
 
 if __name__ == "__main__":
