@@ -177,6 +177,15 @@ def main():
         if check_tie(board):
             print_board(board)
             print("ITS A TIE!!")
+            print(f"Would you like to play again {player_name}? y/n")
+            choice = input()
+            if choice == "y" or choice == "Y":
+                clear_terminal()
+                main()
+            else:
+                print("Thanks for the game! Goodbye!")
+                clear_terminal()
+                exit()
             break
         if check_winner(board, "X"):
             print_board(board)
