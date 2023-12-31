@@ -122,15 +122,19 @@ def game_menu():
     MENU START
     Show rules, play game. 
     """
+    green_color = "\033[92m"
+    red_color ="\033[91m"
+    default_color = "\033[0m"
+
     clear_terminal()
-    print("\nWelcome to Tic-Tac-Toe!")
-    print("         Rules:          ")
+    print(f"{green_color}\nWelcome to Tic-Tac-Toe! 😃{default_color}")
+    print(f"{red_color}\n         Rules:          {default_color}")
     print("You are X, Computer is O.")
     print("You can only chose a number from 1-9.")
     print("Chose only one area with a number each turn.")
     print("You cant chose an area already filled with 0 or X.")
-    print(" 3 in row, line or diagonal wins the game")
-    print("\nWould you like to play? (y/n): ")
+    print("3 in row, line or diagonal wins the game")
+    print(f"{green_color}\nWould you like to play?{default_color} (y/n): ")
 
     choice = input()
     if choice == 'y' or choice == "Y":
