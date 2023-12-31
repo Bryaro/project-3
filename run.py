@@ -161,6 +161,19 @@ def game_menu():
         exit()
 
 
+def play_again(player_name):
+
+    print(f"Would you like to play again {player_name}? y/n")
+    choice = input()
+    if choice == "y" or choice == "Y":
+        clear_terminal()
+        main()
+    else:
+        print("Thanks for the game! Goodbye!")
+        clear_terminal()
+        exit()
+
+
 def main():
     """
     Runs the main function for the Tic-Tac-Toe game.
@@ -177,15 +190,7 @@ def main():
         if check_tie(board):
             print_board(board)
             print("ITS A TIE!!")
-            print(f"Would you like to play again {player_name}? y/n")
-            choice = input()
-            if choice == "y" or choice == "Y":
-                clear_terminal()
-                main()
-            else:
-                print("Thanks for the game! Goodbye!")
-                clear_terminal()
-                exit()
+            play_again(player_name)
             break
         if check_winner(board, "X"):
             print_board(board)
@@ -197,16 +202,7 @@ def main():
                   "░░╚██╔╝░░██║╚█████╔╝░░░██║░░░╚█████╔╝██║░░██║░░░██║░░░██╗\n"
                   "░░░╚═╝░░░╚═╝░╚════╝░░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝\n"
                   f"{default_color}")
-            print(f"Would you like to play again {player_name}?"
-                  " y/n")
-            choice = input()
-            if choice == "y" or choice == "Y":
-                clear_terminal()
-                main()
-            else:
-                print("Thanks for the game! Goodbye!")
-                clear_terminal()
-                exit()
+            play_again(player_name)
             break
 
         computer_turn(board)
@@ -218,15 +214,7 @@ def main():
             break
         if check_winner(board, "O"):
             print(f"{red_color}𝔾𝔸𝕄𝔼 𝕆𝕍𝔼ℝ ❕{default_color}")
-            print(f"Would you like to play again {player_name}? y/n")
-            choice = input()
-            if choice == "y" or choice == "Y":
-                clear_terminal()
-                main()
-            else:
-                print("Thanks for the game! Goodbye!")
-                clear_terminal()
-                exit()
+            play_again(player_name)
             break
 
 
