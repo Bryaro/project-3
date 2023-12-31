@@ -3,7 +3,7 @@ import os
 
 
 green_color = "\033[92m"
-red_color ="\033[91m"
+red_color = "\033[91m"
 default_color = "\033[0m"
 
 
@@ -36,7 +36,8 @@ def print_board(board):
     each cell is divided with "  |  "
     each row is rivided with "--" + "+-" + "--" + "+--"
     which will turn to a more visible display to user
-    Display will be more identical to Tic-Tac-Toe with each cell representing a number
+    Display will be more identical to Tic-Tac-Toe
+    Each cell representing a number
     and each number is representing a cell
     """
     for row in board:
@@ -54,7 +55,7 @@ def player_turn(board):
     while True:
         try:
             turn = int(input("\nYour Turn: Enter a number 1-9:\n"))
-            row = (turn - 1) // 3 
+            row = (turn - 1) // 3
             col = (turn - 1) % 3
 
             if board[row][col] == turn:
@@ -63,7 +64,8 @@ def player_turn(board):
             else:
                 print("\ncell already taken. Try again\n")
         except (ValueError, IndexError):
-            print("you typed invalid data, you need to type only number bewteen 1-9\n")
+            print("you typed invalid data,"
+                  " you need to type only number bewteen 1-9\n")
 
 
 def computer_turn(board):
@@ -73,12 +75,12 @@ def computer_turn(board):
     If the selected cell is unoccupied, it marks the cell with 'O'.
     """
     while True:
-            turn = random.randint(1, 9)
-            row = (turn - 1) // 3 
-            col = (turn - 1) % 3
-            if board[row][col] == turn:
-                board[row][col] = "O"
-                break
+        turn = random.randint(1, 9)
+        row = (turn - 1) // 3
+        col = (turn - 1) % 3
+        if board[row][col] == turn:
+            board[row][col] = "O"
+            break
 
 
 def check_winner(board, player):
@@ -87,15 +89,23 @@ def check_winner(board, player):
     Args board for the current table, and player(the computer or the user)
     """
     for i in range(3):
-        if board[i][0] == player and board[i][1] == player and board[i][2] == player:
+        if (board[i][0] == player and
+                board[i][1] == player and
+                board[i][2] == player):
             return True
-        if board[0][i] == player and board[1][i] == player and board[2][i] == player:
+        if (board[0][i] == player and
+                board[1][i] == player and
+                board[2][i] == player):
             return True
-    # diagonal 
-    if board[0][0] == player and board[1][1] == player and board[2][2] == player:
+    # diagonal
+    if (board[0][0] == player and
+            board[1][1] == player and
+            board[2][2] == player):
         return True
     # diagonal
-    if board[2][0] == player and board[1][1] == player and board[0][2] == player:
+    if (board[2][0] == player and
+            board[1][1] == player and
+            board[0][2] == player):
         return True
     return False
 
@@ -126,7 +136,7 @@ def clear_terminal():
 def game_menu():
     """
     MENU START
-    Show rules, play game. 
+    Show rules, play game.
     """
     clear_terminal()
     print(f"{green_color}\n     🆆 🅴 🅻 🅲 🅾 🅼 🅴{default_color}")
@@ -165,15 +175,15 @@ def main():
         if check_winner(board, "X"):
             print_board(board)
             print(f"{green_color}\n"
-                "██╗░░░██╗██╗░█████╗░████████╗░█████╗░██████╗░██╗░░░██╗██╗\n"
-                "██║░░░██║██║██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗╚██╗░██╔╝██║\n"
-                "╚██╗░██╔╝██║██║░░╚═╝░░░██║░░░██║░░██║██████╔╝░╚████╔╝░██║\n"
-                "░╚████╔╝░██║██║░░██╗░░░██║░░░██║░░██║██╔══██╗░░╚██╔╝░░╚═╝\n"
-                "░░╚██╔╝░░██║╚█████╔╝░░░██║░░░╚█████╔╝██║░░██║░░░██║░░░██╗\n"
-                "░░░╚═╝░░░╚═╝░╚════╝░░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝\n"
-                f"{default_color}")
+                  "██╗░░░██╗██╗░█████╗░████████╗░█████╗░██████╗░██╗░░░██╗██╗\n"
+                  "██║░░░██║██║██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗╚██╗░██╔╝██║\n"
+                  "╚██╗░██╔╝██║██║░░╚═╝░░░██║░░░██║░░██║██████╔╝░╚████╔╝░██║\n"
+                  "░╚████╔╝░██║██║░░██╗░░░██║░░░██║░░██║██╔══██╗░░╚██╔╝░░╚═╝\n"
+                  "░░╚██╔╝░░██║╚█████╔╝░░░██║░░░╚█████╔╝██║░░██║░░░██║░░░██╗\n"
+                  "░░░╚═╝░░░╚═╝░╚════╝░░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝\n"
+                  f"{default_color}")
             break
-        
+
         computer_turn(board)
         print("\nBoard after Computers turn\n")
         print_board(board)
@@ -184,6 +194,7 @@ def main():
         if check_winner(board, "O"):
             print(f"{red_color}𝔾𝔸𝕄𝔼 𝕆𝕍𝔼ℝ ❕{default_color}")
             break
+
 
 if __name__ == "__main__":
     while game_menu():
