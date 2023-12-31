@@ -181,8 +181,8 @@ def main():
     player_name = input("Enter your name: ")
     clear_terminal()
     board = create_board()
-    print("\nWelcome to the Tic Tac Toe Game!")
-    print("    HAVE FUN AND GOOD LUCK 😀\n")
+    print("\n     Welcome to the Tic Tac Toe Game!")
+    print("         HAVE FUN AND GOOD LUCK 😀\n")
     print_board(board)
     while True:
         player_turn(board, player_name)
@@ -206,7 +206,6 @@ def main():
             break
 
         computer_turn(board)
-        print("\nBoard after Computers turn\n")
         print_board(board)
         if check_tie(board):
             print_board(board)
