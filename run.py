@@ -1,6 +1,7 @@
 import random
 import os
 
+
 def create_board():
     """
     Create and return a 3x3 Tic-Tac-Toe board numbered from 1 to 9.
@@ -116,6 +117,23 @@ def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
+def game_menu():
+    """
+    MENU START
+    Show rules, play game. 
+    """
+    clear_terminal()
+    print("\nWelcome to Tic-Tac-Toe!")
+    print("Rule text will be here")
+    print("\nWould you like to play? (y/n): ")
+    choice = input()
+    if choice == 'y' or choice == "Y":
+        main()
+    else:
+        print("Thanks for playing! Goodbye.")
+        exit()
+
+
 def main():
     """
     Runs the main function for the Tic-Tac-Toe game.
@@ -125,7 +143,6 @@ def main():
     print("\nWelcome to the Tic Tac Toe Game!")
     print("    HAVE FUN AND GOOD LUCK 😀\n")
     print_board(board)
-
     while True:
         player_turn(board)
         clear_terminal()
@@ -148,5 +165,6 @@ def main():
         if check_winner(board, "O"):
             print("GAME OVER!")
             break
+
 
 main()
