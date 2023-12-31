@@ -7,7 +7,6 @@ red_color = "\033[91m"
 default_color = "\033[0m"
 
 
-
 def create_board():
     """
     Create and return a 3x3 Tic-Tac-Toe board numbered from 1 to 9.
@@ -40,12 +39,13 @@ def print_board(board):
     Each cell representing a number
     and each number is representing a cell
     """
+    indent = "\t\t"
     for row in board:
-        print(" ┃ ".join(str(cell) for cell in row))
-        print("━" + "━╋━" + "━" + "━╋━━")
+        print(indent + " ┃ ".join(str(cell) for cell in row))
+        print(indent + "━" + "━╋━" + "━" + "━╋━━")
 
 
-def player_turn(board):
+def player_turn(board, player_name):
     """
     Create player turn
     lets player type number from 1-9
@@ -54,7 +54,8 @@ def player_turn(board):
     """
     while True:
         try:
-            turn = int(input("\nYour Turn: Enter a number 1-9:\n"))
+            turn = int(input(
+                f"\nIt is your turn {player_name}. Enter a number 1-9:\n"))
             row = (turn - 1) // 3
             col = (turn - 1) % 3
 
@@ -139,14 +140,19 @@ def game_menu():
     Show rules, play game.
     """
     clear_terminal()
-    print(f"{green_color}\n     🆆 🅴 🅻 🅲 🅾 🅼 🅴{default_color}")
-    print(f"{red_color}\n         Rules:          {default_color}")
-    print("You are X, Computer is O.")
-    print("You can only chose a number from 1-9.")
-    print("Chose only one area with a number each turn.")
-    print("You cant chose an area already filled with 0 or X.")
-    print("3 in row, line or diagonal wins the game")
-    print(f"{green_color}\nWould you like to play?{default_color} (y/n): ")
+    print(f"{green_color}\n"
+          "▒█░░▒█ ▒█▀▀▀ ▒█░░░ ▒█▀▀█ ▒█▀▀▀█ ▒█▀▄▀█ ▒█▀▀▀\n"
+          "▒█▒█▒█ ▒█▀▀▀ ▒█░░░ ▒█░░░ ▒█░░▒█ ▒█▒█▒█ ▒█▀▀▀\n"
+          "▒█▄▀▄█ ▒█▄▄▄ ▒█▄▄█ ▒█▄▄█ ▒█▄▄▄█ ▒█░░▒█ ▒█▄▄▄")
+    print("\n       ＴＩＣ－ＴＡＣ－ＴＯＥ ＧＡＭＥ")
+    print(f"{red_color}\n               Rules:{default_color}")
+    print("     You are X, Computer is O.")
+    print("     You can only chose a number from 1-9.")
+    print("     Chose only one area with a number each turn.")
+    print("     You cant chose an area already filled with 0 or X.")
+    print("     3 in row, line or diagonal wins the game")
+    print(f"{green_color}\nWould you like to play?{default_color} (y/n): ",
+          end="")
 
     choice = input()
     if choice == 'y' or choice == "Y":
@@ -160,13 +166,14 @@ def main():
     """
     Runs the main function for the Tic-Tac-Toe game.
     """
+    player_name = input("Enter your name: ")
     clear_terminal()
     board = create_board()
     print("\nWelcome to the Tic Tac Toe Game!")
     print("    HAVE FUN AND GOOD LUCK 😀\n")
     print_board(board)
     while True:
-        player_turn(board)
+        player_turn(board, player_name)
         clear_terminal()
         if check_tie(board):
             print_board(board)
