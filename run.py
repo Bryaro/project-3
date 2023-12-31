@@ -124,8 +124,14 @@ def game_menu():
     """
     clear_terminal()
     print("\nWelcome to Tic-Tac-Toe!")
-    print("Rule text will be here")
+    print("         Rules:          ")
+    print("You are X, Computer is O.")
+    print("You can only chose a number from 1-9.")
+    print("Chose only one area with a number each turn.")
+    print("You cant chose an area already filled with 0 or X.")
+    print(" 3 in row, line or diagonal wins the game")
     print("\nWould you like to play? (y/n): ")
+
     choice = input()
     if choice == 'y' or choice == "Y":
         main()
@@ -166,5 +172,6 @@ def main():
             print("GAME OVER!")
             break
 
-
-main()
+if __name__ == "__main__":
+    while game_menu():
+        main()
