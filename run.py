@@ -7,7 +7,7 @@ def create_board():
     top-left cell and ending with 9 in the bottom-right cell.
     Returns:
     list of lists: A 3x3 grid representing the Tic-Tac-Toe board,
-    with each cell numbered from 1 to 9..
+    with each cell numbered from 1 to 9.
     """
     board = []
     cell_number = 1
@@ -69,7 +69,7 @@ def computer_turn(board):
             row = (turn - 1) // 3 
             col = (turn - 1) % 3
             if board[row][col] == turn:
-                board[row][col] = "O"
+                board[row][col] = "\33[91m" + "O" + "\33[0m"
                 break
 
 
@@ -83,8 +83,10 @@ def check_winner(board, player):
             return True
         if board[0][i] == player and board[1][i] == player and board[2][i] == player:
             return True
+    # diagonal 
     if board[0][0] == player and board[1][1] == player and board[0][2] == player:
         return True
+    # diagonal
     if board[2][0] == player and board[1][1] == player and board[0][2] == player:
         return True
     return False
@@ -95,7 +97,6 @@ def check_tie(board):
     Checks for Tie
     """
     cell_count = 0
-
     for row in board:
         for cell in row:
             if cell == "X" or cell == "O":
