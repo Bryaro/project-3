@@ -153,7 +153,6 @@ def game_menu():
     print("     3 in row, line or diagonal wins the game")
     print(f"{green_color}\nWould you like to play?{default_color} (y/n): ",
           end="")
-
     choice = input()
     if choice == 'y' or choice == "Y":
         main()
@@ -189,6 +188,16 @@ def main():
                   "░░╚██╔╝░░██║╚█████╔╝░░░██║░░░╚█████╔╝██║░░██║░░░██║░░░██╗\n"
                   "░░░╚═╝░░░╚═╝░╚════╝░░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝\n"
                   f"{default_color}")
+            print(f"Would you like to play again {player_name}?"
+                  " y/n")
+            choice = input()
+            if choice == "y" or choice == "Y":
+                clear_terminal()
+                main()
+            else:
+                print("Thanks for the game! Goodbye!")
+                clear_terminal()
+                exit()
             break
 
         computer_turn(board)
@@ -200,6 +209,15 @@ def main():
             break
         if check_winner(board, "O"):
             print(f"{red_color}𝔾𝔸𝕄𝔼 𝕆𝕍𝔼ℝ ❕{default_color}")
+            print(f"Would you like to play again {player_name}? y/n")
+            choice = input()
+            if choice == "y" or choice == "Y":
+                clear_terminal()
+                main()
+            else:
+                print("Thanks for the game! Goodbye!")
+                clear_terminal()
+                exit()
             break
 
 
