@@ -88,6 +88,20 @@ def computer_turn(board):
             break
 
 
+def computer_turn_difficult(board):
+    """
+    Create difficult computer turn
+    This function randomly selects a cell on the board for the computer's turn.
+    If the selected cell is unoccupied, it marks the cell with '𝖮'.
+    """
+    if (board[0][0] == "X" and
+            board[0][1] == "X" and
+            isinstance(board[0][2], int)):
+        board[0][2] = "𝖮"
+        return
+    computer_turn(board)
+
+
 def check_winner(board, player):
     """
     Check for winner (computer or user).
@@ -191,6 +205,21 @@ def play_again(player_name):
             print("Error, try agian!")
 
 
+def choose_difficulty():
+    """
+    Let user to choose difficulty level easy or hard
+    """
+    while True:
+        print("Choose difficult level:")
+        choice = input("Enter 1 or 2: ")
+        if choice == "1":
+            return computer_turn
+        elif choice == "2":
+            return computer_turn_difficult
+        else:
+            print("invalid choice")
+
+
 def main():
     """
     Runs the main function for the Tic-Tac-Toe game.
@@ -198,18 +227,13 @@ def main():
     player_name = input("   Enter your name: ")
     clear_terminal()
     board = create_board()
-    print_board(board)
+    computer_move = choose_difficulty()
     print("\n         HAVE FUN AND GOOD LUCK !\n")
     while True:
         player_turn(board, player_name)
         clear_terminal()
-        if check_tie(board):
-            print_board(board)
-            print("ITS A TIE!!")
-            play_again(player_name)
-            break
+
         if check_winner(board, "X"):
-            print_board(board)
             print(f"{green_color}\n"
                   "██╗░░░██╗██╗░█████╗░████████╗░█████╗░██████╗░██╗░░░██╗██╗\n"
                   "██║░░░██║██║██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗╚██╗░██╔╝██║\n"
@@ -220,8 +244,13 @@ def main():
                   f"{default_color}")
             play_again(player_name)
             break
+        if check_tie(board):
+            print_board(board)
+            print("ITS A TIE!!")
+            play_again(player_name)
+            break
 
-        computer_turn(board)
+        computer_move(board)
         print_board(board)
         if check_tie(board):
             print_board(board)
