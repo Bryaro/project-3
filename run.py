@@ -156,12 +156,15 @@ def game_menu():
     print("     3 in row, line or diagonal wins the game")
     print(f"{green_color}\nWould you like to play?{default_color} (y/n): ",
           end="")
-    choice = input()
-    if choice == 'y' or choice == "Y":
-        main()
-    if choice == "n" or choice == "N":
-        print("Thanks for playing! Goodbye.")
-        exit()
+    while True:
+        choice = input()
+        if choice == 'y' or choice == "Y":
+            main()
+        if choice == "n" or choice == "N":
+            print("Thanks for playing! Goodbye.")
+            exit()
+        if choice != 'y' or choice != "n":
+            print("Incorrect type. Please type y or n")
 
 
 def play_again(player_name):
