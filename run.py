@@ -90,10 +90,10 @@ def computer_turn(board):
 
 def computer_turn_difficult(board):
     """
-    Create difficult computer turn
+    Create difficult computer level
     This function randomly selects a cell on the board for the computer's turn,
     but if the cell 1, and cell 2 is occupied with X,
-    then if cell 3 is unoccupied, it occupies the cell 3 with '𝖮'.
+    and if cell 3 is unoccupied, it occupies the cell 3 with '𝖮'.
     """
     # if (board[0][0] == "X" and
     #         board[0][1] == "X" and
@@ -102,6 +102,21 @@ def computer_turn_difficult(board):
     #     return
     for row in board:
         if row.count("X") == 2:
+            for i in range(3):
+                if isinstance(row[i], int):
+                    row[i] = "𝖮"
+                    return
+    computer_turn(board)
+
+
+def computer_turn_lvl3(board):
+    """
+    Create Hard computer level
+    this will always occupy the third cell with "𝖮" in the row
+    if two other cells in the row are occupied
+    """
+    for row in board:
+        if row.count("X") == 2 or row.count("𝖮"):
             for i in range(3):
                 if isinstance(row[i], int):
                     row[i] = "𝖮"
@@ -214,17 +229,21 @@ def play_again(player_name):
 
 def choose_difficulty():
     """
-    Let user to choose difficulty level easy or hard
+    Let user to choose difficulty level Easy, Difficult and Hard,
     """
     while True:
-        print("\nChoose difficult level. 1 Easy, 2 Difficult:")
-        choice = input("\n        Enter 1 or 2: ")
+        print("\nChoose difficult level !")
+        print("\n1 Easy, 2 Difficult, 3 Hard ")
+        choice = input("\n        Enter 1, 2 or 3: ")
         if choice == "1":
             clear_terminal()
             return computer_turn
         elif choice == "2":
             clear_terminal()
             return computer_turn_difficult
+        elif choice == "3":
+            clear_terminal()
+            return computer_turn_lvl3
         else:
             print("invalid choice")
 
