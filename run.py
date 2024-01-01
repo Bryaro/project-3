@@ -227,6 +227,7 @@ def main():
     player_name = input("   Enter your name: ")
     clear_terminal()
     board = create_board()
+    print_board(board)
     computer_move = choose_difficulty()
     print("\n         HAVE FUN AND GOOD LUCK !\n")
     while True:
@@ -234,6 +235,7 @@ def main():
         clear_terminal()
 
         if check_winner(board, "X"):
+            print_board(board)
             print(f"{green_color}\n"
                   "██╗░░░██╗██╗░█████╗░████████╗░█████╗░██████╗░██╗░░░██╗██╗\n"
                   "██║░░░██║██║██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗╚██╗░██╔╝██║\n"
@@ -257,6 +259,7 @@ def main():
             print("ITS A TIE!!")
             break
         if check_winner(board, "𝖮"):
+            print_board(board)
             print(f"{red_color}𝔾𝔸𝕄𝔼 𝕆𝕍𝔼ℝ ❕{default_color}")
             play_again(player_name)
             break
