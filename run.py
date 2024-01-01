@@ -40,9 +40,12 @@ def print_board(board):
     and each number is representing a cell
     """
     indent = "\t\t"
+    row_counter = 0
     for row in board:
         print(indent + " ┃ ".join(str(cell) for cell in row))
-        print(indent + "━" + "━╋━" + "━" + "━╋━━")
+        row_counter += 1  # Increment the row counter after printing each row
+        if row_counter < 3:  # Only print separator if it's not the last row
+            print(indent + "━" + "━╋━" + "━" + "━╋━━")
 
 
 def player_turn(board, player_name):
