@@ -210,8 +210,8 @@ def choose_difficulty():
     Let user to choose difficulty level easy or hard
     """
     while True:
-        print("Choose difficult level:")
-        choice = input("Enter 1 or 2: ")
+        print("\nChoose difficult level. 1 Easy, 2 Difficult:")
+        choice = input("\n        Enter 1 or 2: ")
         if choice == "1":
             return computer_turn
         elif choice == "2":
@@ -259,6 +259,7 @@ def main():
             print("ITS A TIE!!")
             break
         if check_winner(board, "𝖮"):
+            clear_terminal()
             print_board(board)
             print(f"{red_color}𝔾𝔸𝕄𝔼 𝕆𝕍𝔼ℝ ❕{default_color}")
             play_again(player_name)
