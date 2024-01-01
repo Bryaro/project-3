@@ -32,8 +32,8 @@ def create_board():
 def print_board(board):
     """
     Display/Print to terminal
-    each cell is divided with "  |  "
-    each row is rivided with "--" + "+-" + "--" + "+--"
+    each cell is divided with "  ┃  "
+    each row is divided with "━━╋━━╋━━"
     which will turn to a more visible display to user
     Display will be more identical to Tic-Tac-Toe
     Each cell representing a number
@@ -76,14 +76,14 @@ def computer_turn(board):
     """
     Create computer turn
     This function randomly selects a cell on the board for the computer's turn.
-    If the selected cell is unoccupied, it marks the cell with 'O'.
+    If the selected cell is unoccupied, it marks the cell with '𝖮'.
     """
     while True:
         turn = random.randint(1, 9)
         row = (turn - 1) // 3
         col = (turn - 1) % 3
         if board[row][col] == turn:
-            board[row][col] = "O"
+            board[row][col] = "𝖮"
             break
 
 
@@ -121,7 +121,7 @@ def check_tie(board):
     cell_count = 0
     for row in board:
         for cell in row:
-            if cell == "X" or cell == "O":
+            if cell == "X" or cell == "𝖮":
                 cell_count += 1
     return cell_count == 9
 
@@ -149,32 +149,42 @@ def game_menu():
           "▒█▄▀▄█ ▒█▄▄▄ ▒█▄▄█ ▒█▄▄█ ▒█▄▄▄█ ▒█░░▒█ ▒█▄▄▄")
     print("\n       ＴＩＣ－ＴＡＣ－ＴＯＥ ＧＡＭＥ")
     print(f"{red_color}\n               Rules:{default_color}")
-    print("     You are X, Computer is O.")
+    print("     You are X, Computer is 𝖮.")
     print("     You can only chose a number from 1-9.")
     print("     Chose only one area with a number each turn.")
-    print("     You cant chose an area already filled with 0 or X.")
+    print("     You cant chose an area already filled with 𝖮 or X.")
     print("     3 in row, line or diagonal wins the game")
     print(f"{green_color}\nWould you like to play?{default_color} (y/n): ",
           end="")
     choice = input()
     if choice == 'y' or choice == "Y":
         main()
-    else:
+    if choice == "n" or choice == "N":
         print("Thanks for playing! Goodbye.")
         exit()
 
 
 def play_again(player_name):
+    while True:
+        try:
+            print(f"Would you like to play again {player_name}? y/n")
+            choice = input()
 
-    print(f"Would you like to play again {player_name}? y/n")
-    choice = input()
-    if choice == "y" or choice == "Y":
-        clear_terminal()
-        main()
-    else:
-        print("Thanks for the game! Goodbye!")
-        clear_terminal()
-        exit()
+            if choice == "y" or choice == "Y":
+                clear_terminal()
+                main()
+                break
+            elif choice == "n":
+                print("Thanks for the game! Goodbye!")
+                clear_terminal()
+                exit()
+            else:
+                print(
+                    f"{red_color}invalid input.{default_color}"
+                    f" Type {green_color}y for yes{default_color},"
+                    f" and{green_color} n for No{default_color}")
+        except (ValueError, IndexError):
+            print("Error, try agian!")
 
 
 def main():
@@ -184,9 +194,9 @@ def main():
     player_name = input("Enter your name: ")
     clear_terminal()
     board = create_board()
+    print_board(board)
     print("\n     Welcome to the Tic Tac Toe Game!")
     print("         HAVE FUN AND GOOD LUCK 😀\n")
-    print_board(board)
     while True:
         player_turn(board, player_name)
         clear_terminal()
@@ -214,7 +224,7 @@ def main():
             print_board(board)
             print("ITS A TIE!!")
             break
-        if check_winner(board, "O"):
+        if check_winner(board, "𝖮"):
             print(f"{red_color}𝔾𝔸𝕄𝔼 𝕆𝕍𝔼ℝ ❕{default_color}")
             play_again(player_name)
             break
