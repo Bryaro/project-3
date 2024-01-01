@@ -41,6 +41,7 @@ def print_board(board):
     """
     indent = "\t\t"
     row_counter = 0
+    print(" ")
     for row in board:
         print(indent + " ┃ ".join(str(cell) for cell in row))
         row_counter += 1  # Increment the row counter after printing each row
@@ -58,7 +59,7 @@ def player_turn(board, player_name):
     while True:
         try:
             turn = int(input(
-                f"\nIt is your turn {player_name}. Enter a number 1-9:\n"))
+                f"\n     {player_name}'s turn. Enter a number 1-9:\n"))
             row = (turn - 1) // 3
             col = (turn - 1) % 3
 
@@ -154,7 +155,7 @@ def game_menu():
     print("     Chose only one area with a number each turn.")
     print("     You cant chose an area already filled with 𝖮 or X.")
     print("     3 in row, line or diagonal wins the game")
-    print(f"{green_color}\nWould you like to play?{default_color} (y/n): ",
+    print(f"{green_color}\n    Would you like to play?{default_color} (y/n): ",
           end="")
     while True:
         choice = input()
@@ -194,12 +195,11 @@ def main():
     """
     Runs the main function for the Tic-Tac-Toe game.
     """
-    player_name = input("Enter your name: ")
+    player_name = input("   Enter your name: ")
     clear_terminal()
     board = create_board()
     print_board(board)
-    print("\n     Welcome to the Tic Tac Toe Game!")
-    print("         HAVE FUN AND GOOD LUCK 😀\n")
+    print("\n         HAVE FUN AND GOOD LUCK !\n")
     while True:
         player_turn(board, player_name)
         clear_terminal()
