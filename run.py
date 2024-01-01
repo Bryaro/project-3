@@ -91,14 +91,21 @@ def computer_turn(board):
 def computer_turn_difficult(board):
     """
     Create difficult computer turn
-    This function randomly selects a cell on the board for the computer's turn.
-    If the selected cell is unoccupied, it marks the cell with '𝖮'.
+    This function randomly selects a cell on the board for the computer's turn,
+    but if the cell 1, and cell 2 is occupied with X,
+    then if cell 3 is unoccupied, it occupies the cell 3 with '𝖮'.
     """
-    if (board[0][0] == "X" and
-            board[0][1] == "X" and
-            isinstance(board[0][2], int)):
-        board[0][2] = "𝖮"
-        return
+    # if (board[0][0] == "X" and
+    #         board[0][1] == "X" and
+    #         isinstance(board[0][2], int)):
+    #     board[0][2] = "𝖮"
+    #     return
+    for row in board:
+        if row.count("X") == 2:
+            for i in range(3):
+                if isinstance(row[i], int):
+                    row[i] = "𝖮"
+                    return
     computer_turn(board)
 
 
