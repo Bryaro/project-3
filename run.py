@@ -213,8 +213,10 @@ def choose_difficulty():
         print("\nChoose difficult level. 1 Easy, 2 Difficult:")
         choice = input("\n        Enter 1 or 2: ")
         if choice == "1":
+            clear_terminal()
             return computer_turn
         elif choice == "2":
+            clear_terminal()
             return computer_turn_difficult
         else:
             print("invalid choice")
@@ -224,11 +226,12 @@ def main():
     """
     Runs the main function for the Tic-Tac-Toe game.
     """
-    player_name = input("   Enter your name: ")
+    player_name = input("\n   Enter your name: ")
     clear_terminal()
     board = create_board()
     print_board(board)
     computer_move = choose_difficulty()
+    print_board(board)
     print("\n         HAVE FUN AND GOOD LUCK !\n")
     while True:
         player_turn(board, player_name)
