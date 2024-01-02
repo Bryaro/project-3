@@ -51,10 +51,14 @@ def print_board(board):
 
 def player_turn(board, player_name):
     """
-    Create player turn
-    lets player type number from 1-9
-    raise error if player chose incorrect or already chosen data
-    this will run in while loop till player/user chosen correct data
+    Handles a player's turn in Tic-Tac-Toe.
+    Prompts the player to select a cell by number (1-9).
+    Checks for valid and unoccupied cell selection.
+    Repeats prompt for invalid choices.
+    Args:
+        board (list): Current Tic-Tac-Toe board state.
+        player_name (str): Player's name.
+    Updates the board with the player's move. No return value.
     """
     while True:
         try:
@@ -77,7 +81,7 @@ def computer_turn(board):
     """
     Create computer turn
     This function randomly selects a cell on the board for the computer's turn.
-    If the selected cell is unoccupied, it marks the cell with '𝖮'.
+    If the random selected cell is unoccupied, it marks the cell with '𝖮'.
     """
     while True:
         turn = random.randint(1, 9)
@@ -90,10 +94,12 @@ def computer_turn(board):
 
 def computer_turn_difficult(board):
     """
-    Create difficult computer level
-    This function randomly selects a cell on the board for the computer's turn,
-    but if the cell 1, and cell 2 is occupied with X,
-    and if cell 3 is unoccupied, it occupies the cell 3 with '𝖮'.
+    Create a medium difficulty level (Level 2) for the computer's turn.
+    This function checks each row of the board. If it finds a row with
+    two cells already occupied by 'X' (the player's mark), it occupies
+    the remaining unoccupied cell with '𝖮' (the computer's mark) to block
+    the player's potential win. If no such opportunity exists, it defaults
+    to making a random move.
     """
     # if (board[0][0] == "X" and
     #         board[0][1] == "X" and
@@ -111,9 +117,14 @@ def computer_turn_difficult(board):
 
 def computer_turn_lvl3(board):
     """
-    Create Hard computer level
-    this will always occupy the third cell with "𝖮" in the row
-    if two other cells in the row are occupied
+    Create a hard difficulty level (Level 3) for the computer's turn.
+    This function checks each row of the board. If it finds a row with
+    either two cells occupied by 'X' or two by '𝖮', it occupies the
+    remaining unoccupied cell in that row with '𝖮'.
+    This serves two purposes: blocking
+    the player's potential win (if two 'X's are found) and creating a winning
+    line for the computer (if two '𝖮's are found). If no such opportunity
+    exists, it defaults to making a random move.
     """
     for row in board:
         if row.count("X") == 2 or row.count("𝖮"):
@@ -126,8 +137,13 @@ def computer_turn_lvl3(board):
 
 def check_winner(board, player):
     """
-    Check for winner (computer or user).
-    Args board for the current table, and player(the computer or the user)
+    Checks for a winning condition for the specified player on the board.
+    Args:
+        board (list): The 3x3 Tic-Tac-Toe board state.
+        player (str): The player's mark ('X' or '𝖮').
+    Returns:
+        bool: True if the player has won (three marks in a row, column,
+        or diagonal), False otherwise.
     """
     for i in range(3):
         if (board[i][0] == player and
@@ -153,7 +169,13 @@ def check_winner(board, player):
 
 def check_tie(board):
     """
-    Checks for Tie
+    Evaluates if the game is a tie.
+    A tie is when all board cells are filled without any player winning.
+    The function checks each cell for a tie condition.
+    Args:
+        board (list of lists): 3x3 Tic-Tac-Toe board.
+    Returns:
+        bool: True for a tie, False otherwise.
     """
     cell_count = 0
     for row in board:
@@ -176,8 +198,13 @@ def clear_terminal():
 
 def game_menu():
     """
-    MENU START
-    Show rules, play game.
+    Displays the main menu of the Tic-Tac-Toe game.
+    This function presents the game's main menu to the user, showing
+    game rules and the option to start playing. It handles user input
+    to either start the game or exit. If the user chooses to play, it
+    calls the main game function.
+    No arguments or return values. User interaction is handled through
+    input prompts and print statements.
     """
     clear_terminal()
     print(f"{green_color}\n"
@@ -205,6 +232,15 @@ def game_menu():
 
 
 def play_again(player_name):
+    """
+    Prompts the player to play another game or exit.
+    After a game concludes, this function asks the player if they want to
+    play another round. Based on the player's response, it either restarts
+    the game or terminates the program.
+    Args:
+        player_name (str): The name of the player.
+    No return value. Directly calls main() to restart or exits the program.
+    """
     while True:
         try:
             print(f"Would you like to play again {player_name}? y/n")
@@ -229,7 +265,11 @@ def play_again(player_name):
 
 def choose_difficulty():
     """
-    Let user to choose difficulty level Easy, Difficult and Hard,
+    Allows the player to select a difficulty level for the game.
+    Presents options for different difficulty levels and sets the computer's
+    playing strategy based on the player's choice.
+    Returns:
+        function: Computer turn function based on difficulty level.
     """
     while True:
         print("\nChoose difficult level !")
@@ -250,7 +290,11 @@ def choose_difficulty():
 
 def main():
     """
-    Runs the main function for the Tic-Tac-Toe game.
+    Runs the main game loop of Tic-Tac-Toe.
+    Handles the overall game process including player input.
+    displaying the board. Alternating turns between player and computer.
+    Runs till the game ends.
+    No arguments or return values. Calls other functions to manage game flow.
     """
     player_name = input("\n   Enter your name: ")
     clear_terminal()
