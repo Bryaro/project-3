@@ -119,7 +119,7 @@ def computer_turn_lvl3(board):
     """
     Create a hard difficulty level (Level 3) for the computer's turn.
     This function checks each row of the board. If it finds a row with
-    either two cells occupied by 'X' or two by '𝖮', it occupies the
+    either two cells occupied by exactly two 'X' or two by '𝖮', it occupies the
     remaining unoccupied cell in that row with '𝖮'.
     This serves two purposes: blocking
     the player's potential win (if two 'X's are found) and creating a winning
@@ -127,11 +127,36 @@ def computer_turn_lvl3(board):
     exists, it defaults to making a random move.
     """
     for row in board:
-        if row.count("X") == 2 or row.count("𝖮"):
+        if row.count("X") == 2 or row.count("𝖮") == 2:
             for i in range(3):
                 if isinstance(row[i], int):
                     row[i] = "𝖮"
                     return
+    computer_turn(board)
+
+
+def computer_turn_lvl4(board):
+    """
+    Create a hard difficulty level (Level 4) for the computer's turn.
+    Here it evaluates both rows and columns.
+    Checks for two occupied cell in row or in column.
+    Fills the third unoccupied cell with "𝖮"
+    """
+    for col in range(3):
+        column = [board[row][col] for row in range(3)]
+
+        if column.count("X") == 2 or column.count("𝖮") == 2:
+            for row in range(3):
+                if isinstance(board[row][col], int):
+                    board[row][col] = "𝖮"
+                    return
+    for row in board:
+        if row.count("X") == 2 or row.count("𝖮") == 2:
+            for i in range(3):
+                if isinstance(row[i], int):
+                    row[i] = "𝖮"
+                    return
+
     computer_turn(board)
 
 
@@ -145,6 +170,7 @@ def check_winner(board, player):
         bool: True if the player has won (three marks in a row, column,
         or diagonal), False otherwise.
     """
+    # check if winning in each row
     for i in range(3):
         if (board[i][0] == player and
                 board[i][1] == player and
@@ -154,12 +180,12 @@ def check_winner(board, player):
                 board[1][i] == player and
                 board[2][i] == player):
             return True
-    # diagonal
+    # checks if diagonal winning from top-left to bottom right
     if (board[0][0] == player and
             board[1][1] == player and
             board[2][2] == player):
         return True
-    # diagonal
+    # checks if diagonal winning from top right to bottom left
     if (board[2][0] == player and
             board[1][1] == player and
             board[0][2] == player):
@@ -273,8 +299,8 @@ def choose_difficulty():
     """
     while True:
         print("\nChoose difficult level !")
-        print("\n1 Easy, 2 Difficult, 3 Hard ")
-        choice = input("\n        Enter 1, 2 or 3: ")
+        print("\n1 Easy, 2 Difficult, 3 Hard, 4 Advanced ")
+        choice = input("\n        Enter 1, 2, 3 or 4: ")
         if choice == "1":
             clear_terminal()
             return computer_turn
@@ -284,6 +310,9 @@ def choose_difficulty():
         elif choice == "3":
             clear_terminal()
             return computer_turn_lvl3
+        elif choice == "4":
+            clear_terminal()
+            return computer_turn_lvl4
         else:
             print("invalid choice")
 
