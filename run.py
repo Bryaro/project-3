@@ -7,6 +7,9 @@ red_color = "\033[91m"
 default_color = "\033[0m"
 
 
+indent = "\t\t\t"
+
+
 def create_board():
     """
     Create and return a 3x3 Tic-Tac-Toe board numbered from 1 to 9.
@@ -39,7 +42,6 @@ def print_board(board):
     Each cell representing a number
     and each number is representing a cell
     """
-    indent = "\t\t"
     row_counter = 0
     print(" ")
     for row in board:
@@ -63,7 +65,7 @@ def player_turn(board, player_name):
     while True:
         try:
             turn = int(input(
-                f"\n     {player_name}'s turn. Enter a number 1-9:\n"))
+                f"\n                {player_name}'s turn. Enter a number 1-9:\n"))
             row = (turn - 1) // 3
             col = (turn - 1) % 3
 
@@ -71,10 +73,10 @@ def player_turn(board, player_name):
                 board[row][col] = "X"
                 break
             else:
-                print("\ncell already taken. Try again\n")
+                print("\n                cell already taken. Try again\n")
         except (ValueError, IndexError):
-            print("you typed invalid data,"
-                  " you need to type only number bewteen 1-9\n")
+            print("                You typed invalid data, "
+                  "Type only a number bewteen 1-9\n")
 
 
 def computer_turn(board):
@@ -92,52 +94,9 @@ def computer_turn(board):
             break
 
 
-def computer_turn_difficult(board):
+def computer_turn_hard(board):
     """
-    Create a medium difficulty level (Level 2) for the computer's turn.
-    This function checks each row of the board. If it finds a row with
-    two cells already occupied by 'X' (the player's mark), it occupies
-    the remaining unoccupied cell with '𝖮' (the computer's mark) to block
-    the player's potential win. If no such opportunity exists, it defaults
-    to making a random move.
-    """
-    # if (board[0][0] == "X" and
-    #         board[0][1] == "X" and
-    #         isinstance(board[0][2], int)):
-    #     board[0][2] = "𝖮"
-    #     return
-    for row in board:
-        if row.count("X") == 2:
-            for i in range(3):
-                if isinstance(row[i], int):
-                    row[i] = "𝖮"
-                    return
-    computer_turn(board)
-
-
-def computer_turn_lvl3(board):
-    """
-    Create a hard difficulty level (Level 3) for the computer's turn.
-    This function checks each row of the board. If it finds a row with
-    either two cells occupied by exactly two 'X' or two by '𝖮', it occupies the
-    remaining unoccupied cell in that row with '𝖮'.
-    This serves two purposes: blocking
-    the player's potential win (if two 'X's are found) and creating a winning
-    line for the computer (if two '𝖮's are found). If no such opportunity
-    exists, it defaults to making a random move.
-    """
-    for row in board:
-        if row.count("X") == 2 or row.count("𝖮") == 2:
-            for i in range(3):
-                if isinstance(row[i], int):
-                    row[i] = "𝖮"
-                    return
-    computer_turn(board)
-
-
-def computer_turn_lvl4(board):
-    """
-    Create a hard difficulty level (Level 4) for the computer's turn.
+    Create a hard difficulty level for the computer's turn.
     Here it evaluates both rows and columns.
     Checks for two occupied cell in row or in column.
     Fills the third unoccupied cell with "𝖮"
@@ -234,27 +193,27 @@ def game_menu():
     """
     clear_terminal()
     print(f"{green_color}\n"
-          "▒█░░▒█ ▒█▀▀▀ ▒█░░░ ▒█▀▀█ ▒█▀▀▀█ ▒█▀▄▀█ ▒█▀▀▀\n"
-          "▒█▒█▒█ ▒█▀▀▀ ▒█░░░ ▒█░░░ ▒█░░▒█ ▒█▒█▒█ ▒█▀▀▀\n"
-          "▒█▄▀▄█ ▒█▄▄▄ ▒█▄▄█ ▒█▄▄█ ▒█▄▄▄█ ▒█░░▒█ ▒█▄▄▄")
-    print("\n       ＴＩＣ－ＴＡＣ－ＴＯＥ ＧＡＭＥ")
-    print(f"{red_color}\n               Rules:{default_color}")
+          "     ▒█░░▒█ ▒█▀▀▀ ▒█░░░ ▒█▀▀█ ▒█▀▀▀█ ▒█▀▄▀█ ▒█▀▀▀\n"
+          "     ▒█▒█▒█ ▒█▀▀▀ ▒█░░░ ▒█░░░ ▒█░░▒█ ▒█▒█▒█ ▒█▀▀▀\n"
+          "     ▒█▄▀▄█ ▒█▄▄▄ ▒█▄▄█ ▒█▄▄█ ▒█▄▄▄█ ▒█░░▒█ ▒█▄▄▄")
+    print("\n           ＴＩＣ－ＴＡＣ－ＴＯＥ ＧＡＭＥ")
+    print(f"{red_color}\n     Rules:{default_color}")
     print("     You are X, Computer is 𝖮.")
     print("     You can only chose a number from 1-9.")
     print("     Chose only one area with a number each turn.")
     print("     You cant chose an area already filled with 𝖮 or X.")
     print("     3 in row, line or diagonal wins the game")
-    print(f"{green_color}\n    Would you like to play?{default_color} (y/n): ",
-          end="")
+    print(indent + f"{green_color}\n     Would you like to play?{default_color}"
+          "(y/n): ", end="")
     while True:
         choice = input()
         if choice == 'y' or choice == "Y":
             main()
         if choice == "n" or choice == "N":
-            print("Thanks for playing! Goodbye.")
+            print("     Thanks for playing! Goodbye.")
             exit()
         if choice != 'y' or choice != "n":
-            print("Incorrect type. Please type y or n")
+            print("     Incorrect type. Please type y or n")
 
 
 def play_again(player_name):
@@ -269,7 +228,7 @@ def play_again(player_name):
     """
     while True:
         try:
-            print(f"Would you like to play again {player_name}? y/n")
+            print(f"        Would you like to play again {player_name}? y/n")
             choice = input()
 
             if choice == "y" or choice == "Y":
@@ -298,23 +257,17 @@ def choose_difficulty():
         function: Computer turn function based on difficulty level.
     """
     while True:
-        print("\nChoose difficult level !")
-        print("\n1 Easy, 2 Difficult, 3 Hard, 4 Advanced ")
-        choice = input("\n        Enter 1, 2, 3 or 4: ")
+        print("\n           Choose the difficulty level!")
+        print("\n           1 for Easy, 2 for Hard ")
+        choice = input("\n           Enter 1 or 2: ")
         if choice == "1":
             clear_terminal()
             return computer_turn
         elif choice == "2":
             clear_terminal()
-            return computer_turn_difficult
-        elif choice == "3":
-            clear_terminal()
-            return computer_turn_lvl3
-        elif choice == "4":
-            clear_terminal()
-            return computer_turn_lvl4
+            return computer_turn_hard
         else:
-            print("invalid choice")
+            print("           invalid choice")
 
 
 def main():
@@ -325,20 +278,20 @@ def main():
     Runs till the game ends.
     No arguments or return values. Calls other functions to manage game flow.
     """
-    player_name = input("\n   Enter your name: ")
+    player_name = input("\n     Enter your name: ")
     clear_terminal()
     board = create_board()
     print_board(board)
     computer_move = choose_difficulty()
     print_board(board)
-    print("\n         HAVE FUN AND GOOD LUCK !\n")
+    print("\n                HAVE FUN AND GOOD LUCK !\n")
     while True:
         player_turn(board, player_name)
         clear_terminal()
 
         if check_winner(board, "X"):
             print_board(board)
-            print(f"{green_color}\n"
+            print(indent + f"{green_color}\n"
                   "██╗░░░██╗██╗░█████╗░████████╗░█████╗░██████╗░██╗░░░██╗██╗\n"
                   "██║░░░██║██║██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗╚██╗░██╔╝██║\n"
                   "╚██╗░██╔╝██║██║░░╚═╝░░░██║░░░██║░░██║██████╔╝░╚████╔╝░██║\n"
@@ -350,7 +303,7 @@ def main():
             break
         if check_tie(board):
             print_board(board)
-            print("ITS A TIE!!")
+            print("        ITS A TIE!!")
             play_again(player_name)
             break
 
@@ -358,12 +311,12 @@ def main():
         print_board(board)
         if check_tie(board):
             print_board(board)
-            print("ITS A TIE!!")
+            print("          ITS A TIE!!")
             break
         if check_winner(board, "𝖮"):
             clear_terminal()
             print_board(board)
-            print(f"{red_color}𝔾𝔸𝕄𝔼 𝕆𝕍𝔼ℝ ❕{default_color}")
+            print(f"\n{red_color}           𝔾𝔸𝕄𝔼 𝕆𝕍𝔼ℝ ❕{default_color}\n")
             play_again(player_name)
             break
 
