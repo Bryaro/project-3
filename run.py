@@ -7,8 +7,11 @@ red_color = "\033[91m"
 default_color = "\033[0m"
 
 # Define indentation constants for formatting output
-indent = "\t\t"
+text_indent = "\t\t"
+indent = "\t\t" * 2
 board_indent = "\t\t\t\t"
+
+ten_n = "\n" * 10
 
 
 def create_board():
@@ -59,7 +62,7 @@ def create_player_name():
     Validates that the name is a string and no longer than 15 characters.
     """
     while True:
-        player_name = input(indent + "\n\n     Enter your name ")
+        player_name = input(ten_n + indent + "Enter your name: ")
         if player_name.isalpha() and len(player_name) <= 15:
             return player_name
         else:
@@ -218,23 +221,23 @@ def game_menu():
     print("\n\n" + indent + f"{green_color}" "█░█░█ █▀▀ █░░ █▀▀ █▀█ █▀▄▀█ █▀▀")
     print(indent + f"{green_color}" "▀▄▀▄▀ ██▄ █▄▄ █▄▄ █▄█ █░▀░█ ██▄\n")
     print(indent + f"{green_color}""        TIC-TAC-TOE GAME\n")
-    print(f"{indent}{red_color}Rules:\n{default_color}")
-    print(indent + "- You are X, Computer is 𝖮.")
-    print(indent + "- You can only chose a number from 1-9.")
-    print(indent + "- Chose only one area with a number each turn.")
-    print(indent + "- You cant chose an area already filled with 𝖮 or X.")
-    print(indent + "- 3 in row, line or diagonal wins the game\n")
-    print(f"{indent}{green_color}Would you like to play?{default_color}"
+    print(f"{text_indent}{red_color}Rules:\n{default_color}")
+    print(text_indent + "- You are X, Computer is 𝖮.")
+    print(text_indent + "- You can only chose a number from 1-9.")
+    print(text_indent + "- Chose only one area with a number each turn.")
+    print(text_indent + "- You cant chose an area already filled with 𝖮 or X.")
+    print(text_indent + "- 3 in row, line or diagonal wins the game\n")
+    print(f"{text_indent}{green_color}Would you like to play?{default_color}"
           "(y/n): ", end="")
     while True:
         choice = input()
         if choice == 'y' or choice == "Y":
             main()
         if choice == "n" or choice == "N":
-            print(indent + "Thanks for playing! Goodbye.")
+            print(text_indent + "Thanks for playing! Goodbye.")
             exit()
         if choice != 'y' or choice != "n":
-            print(indent + "Incorrect type. Please type y or n")
+            print(text_indent + "Incorrect type. Please type y or n")
 
 
 def play_again(player_name):
@@ -249,7 +252,7 @@ def play_again(player_name):
     """
     while True:
         try:
-            print(f"\n\n\n{indent}Wanna play again {player_name}? y/n")
+            print(f"\n\n\n{indent}Wanna play again {player_name}? y/n", end="")
             choice = input()
 
             if choice == "y" or choice == "Y":
@@ -279,10 +282,10 @@ def choose_difficulty():
     """
     while True:
         clear_terminal()
-        print("\n           Choose the difficulty level!")
-        print("\n           - 1 for Easy")
-        print("\n           - 2 for Hard")
-        choice = input(indent + "\n           Enter 1 or 2: ")
+        print(ten_n + indent + "Choose the difficulty level!\n\n")
+        print(indent + "- 1 for Easy")
+        print(indent + "- 2 for Hard\n")
+        choice = input(indent + "Enter 1 or 2: ")
         if choice == "1":
             clear_terminal()
             return computer_turn
