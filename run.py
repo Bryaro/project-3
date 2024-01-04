@@ -58,6 +58,19 @@ def print_board(board):
             print(indent + "━" + "━╋━" + "━" + "━╋━━")
 
 
+def create_player_name():
+    """
+    Prompts the user to enter a valid player name.
+    Validates that the name is a string and no longer than 15 characters.
+    """
+    while True:
+        player_name = input("\n     Enter your name (up to 15 characters, no numbers): ")
+        if player_name.isalpha() and len(player_name) <= 15:
+            return player_name
+        else:
+            print("     Invalid name. Please enter your name with Maximum of 15 characters.")
+
+
 def player_turn(board, player_name):
     """
     Handles a player's turn in Tic-Tac-Toe.
@@ -284,7 +297,7 @@ def main():
     Runs till the game ends.
     No arguments or return values. Calls other functions to manage game flow.
     """
-    player_name = input("\n     Enter your name: ")
+    player_name = create_player_name()
     clear_terminal()
     board = create_board()
     print_board(board)
