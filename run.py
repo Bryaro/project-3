@@ -8,7 +8,7 @@ default_color = "\033[0m"
 
 
 indent = "\t\t\t"
-board_indent = "\t\t\t\t"
+board_indent = "\t\t\t\t\t"
 
 
 def create_board():
@@ -48,7 +48,7 @@ def print_board(board):
     for row in board:
         print(board_indent + " ┃ ".join(str(cell) for cell in row))
         row_counter += 1  # Increment the row counter after printing each row
-        if row_counter < 3:  # Only print separator if it's not the last     row
+        if row_counter < 3:  # Only print separator if it's not the last row
             print(board_indent + "━" + "━╋━" + "━" + "━╋━━")
 
 
@@ -58,7 +58,7 @@ def create_player_name():
     Validates that the name is a string and no longer than 15 characters.
     """
     while True:
-        player_name = input(indent + "\n     Enter your name "
+        player_name = input(indent + "\n\n\n        Enter your name "
                             "(up to 15 characters, no numbers): ")
         if player_name.isalpha() and len(player_name) <= 15:
             return player_name
