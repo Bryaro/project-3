@@ -1,5 +1,6 @@
 import random
 import os
+import time
 
 # Define ANSI color codes for terminal text coloring
 green_color = "\033[92m"
@@ -99,7 +100,7 @@ def player_turn(board, player_name):
         except (ValueError, IndexError):
             # Handle invalid input or out-of-range selections
             print(indent + "You typed invalid data, "
-                  "Type only a number bewteen 1-9\n")
+                  "Type only a number between 1-9\n")
 
 
 def computer_turn(board):
@@ -287,7 +288,7 @@ def choose_difficulty():
         print(ten_n + indent + "Choose the difficulty level!\n\n")
         print(indent + "- 1 for Easy")
         print(indent + "- 2 for Hard\n")
-        choice = input(indent + "Enter 1 or 2: ")
+        choice = input(indent + "Enter 1 or 2: \n")
         if choice == "1":
             clear_terminal()
             return computer_turn
@@ -295,7 +296,8 @@ def choose_difficulty():
             clear_terminal()
             return computer_turn_hard
         else:
-            print("\n           invalid choice")
+            print(indent + f"{red_color}Invalid choice{default_color}")
+            time.sleep(1)
 
 
 def main():
