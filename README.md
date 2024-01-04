@@ -1,6 +1,7 @@
 # Tic-Tac-Toe
 
-Welcome to our Tic-Tac-Toe game!
+Welcome to our Tic-Tac-Toe game! [Play here](https://bryar-2a68c072830e.herokuapp.com/)
+
 It's a fun game, and you can play on your computer vs the computer
 This TIC-TAC-TOE is a Python terminal game.
 Runs in the terminal and offers a quick and fun tic-tac-toe experience.
@@ -54,6 +55,7 @@ Game runs in loop for till user exits
 
 
 ### Menu features
+![](/assets/documents/Menu.png)
 **Color Display:**
 The game uses special ANSI color codes to make the text in your terminal colorful and visually appealing, enhancing your gaming experience.
 
@@ -98,11 +100,13 @@ Display and Color Codes
 
 Player Name Input
 - Test Case: Enter different names, including names longer than 15 characters and names with non-alphabetic characters.
-- Expected Result: The game should accept names up to 15 alphabetic characters and prompt again for invalid inputs.
+- Expected Result: The game should accept names up to 15 alphabetic characters and prompt again for invalid inputs. In this case Anonymous is used as a name for test
+![](/assets/documents/EnterName.png)
 
 Game Board Creation
 - Test Case: Start a new game and check the initial board layout.
 - Expected Result: A 3x3 grid should be displayed, numbered from 1 to 9.
+![](/assets/documents/Board.png)
 
 Player Turn
 - Test Case: During a player's turn, enter various inputs including valid and invalid cell numbers.
@@ -112,14 +116,17 @@ Computer Turn - Play Hard and Easy
 - Test Case: Observe the computer's move.
 - Action / Input: Watch the moves made by the computer opponent during a player's turn.
 - Expected Result: The computer should place an 'O' in an unoccupied cell. In hard mode, it specifically looks for rows or columns where two cells are already occupied (either by 'X' or 'O') and attempts to fill the third cell with an 'O', thereby either trying to win or block the player's winning move.
+![](/assets/documents/easy_vs_hard.png)
 
 Winning Conditions
 - Test Case: Align three 'X's horizontally, vertically, or diagonally.
 - Expected Result: The game should correctly identify a win, end the game or play again choice given to the player.
+![](/assets/documents/victory.png)
 
 Tie Conditions
 - Test Case: Fill all cells without a winning line.
-- Expected Result: The game should recognize a tie and end the game. Here as well give option to the player if play again or exit by input or 'y' for play again or 'n' to exit
+- Expected Result: The game should recognize a tie and end the game. Here as well give option to the player if play again or exit by input or 'y' for play again or 'n' to exit 
+![](/assets/documents/Tie.png)
 
 Restart and Exit Options
 - Test Case: Choose to restart or exit after a game.
@@ -195,6 +202,14 @@ In computer_turn_hard, the computer's strategy might not be optimal. It checks f
 The play_again function could potentially have issues with the game state reset, ensuring a completely new game setup for each replay. e.g Player need to always type name again, but this could also be in the
 [Future Enhancements](#future-enhancements).
 
+## Logic path
+- Game Architecture Diagram
+
+To provide a clearer picture of the game's code structure and logic, we have created a comprehensive flowchart using Lucidchart. This diagram breaks down the execution flow of `run.py`, illustrating how the game progresses from start to finish and how the different functions interact with each other for an easier guide to build the game and its fucntions.
+
+![View the full diagram here](/assets/documents/lucichart.png)
+
+
 ## Deployment
 
 - Steps
@@ -204,10 +219,24 @@ The play_again function could potentially have issues with the game state reset,
 4. Next link the Heroku app to the repository inside Heroku
 5. Click on Deploy
 
+## Development Tools and Techniques
+1. Python
+2. Github
+3. Heroku
+4. Lucidchart
+
+## Screenshots
+[My GitHub Documents](https://github.com/Bryaro/project-3/tree/main/assets/documents)
+
+
 ## Credits
 - Font generator
 - wikipedia
+- Font generator [FSYMBOLS ](https://fsymbols.com/)
+- Readme formats [Basic writing and formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#relative-links)
 - Clears the terminal
     Original code from [here](    http://www.coding4you.at/inf_tag/beginners_python_cheat_sheet.pdf)
     Recommended to me by Goran Sigeskog
     [His GitHub](https://github.com/gorsig)
+
+    [Back to Top](#tic-tac-toe)
