@@ -10,6 +10,13 @@ default_color = "\033[0m"
 indent = "\t\t\t"
 
 
+def cprint(text):
+    """
+    Custom print function to automatically center text within 80 characters.
+    """
+    print(text.center(80))
+
+
 def create_board():
     """
     Create and return a 3x3 Tic-Tac-Toe board numbered from 1 to 9.
@@ -65,7 +72,8 @@ def player_turn(board, player_name):
     while True:
         try:
             turn = int(input(
-                f"\n                {player_name}'s turn. Enter a number 1-9:\n"))
+                f"\n                {player_name}'s turn."
+                " Enter a number 1-9:\n"))
             row = (turn - 1) // 3
             col = (turn - 1) % 3
 
@@ -192,18 +200,16 @@ def game_menu():
     input prompts and print statements.
     """
     clear_terminal()
-    print(f"{green_color}\n"
-          "     ▒█░░▒█ ▒█▀▀▀ ▒█░░░ ▒█▀▀█ ▒█▀▀▀█ ▒█▀▄▀█ ▒█▀▀▀\n"
-          "     ▒█▒█▒█ ▒█▀▀▀ ▒█░░░ ▒█░░░ ▒█░░▒█ ▒█▒█▒█ ▒█▀▀▀\n"
-          "     ▒█▄▀▄█ ▒█▄▄▄ ▒█▄▄█ ▒█▄▄█ ▒█▄▄▄█ ▒█░░▒█ ▒█▄▄▄")
-    print("\n           ＴＩＣ－ＴＡＣ－ＴＯＥ ＧＡＭＥ")
+    print(indent + f"{green_color}" "█░█░█ █▀▀ █░░ █▀▀ █▀█ █▀▄▀█ █▀▀")
+    print(indent + f"{green_color}" "▀▄▀▄▀ ██▄ █▄▄ █▄▄ █▄█ █░▀░█ ██▄\n")
+    print(indent + f"{green_color}""        TIC-TAC-TOE GAME")
     print(f"{red_color}\n     Rules:{default_color}")
     print("     You are X, Computer is 𝖮.")
     print("     You can only chose a number from 1-9.")
     print("     Chose only one area with a number each turn.")
     print("     You cant chose an area already filled with 𝖮 or X.")
     print("     3 in row, line or diagonal wins the game")
-    print(indent + f"{green_color}\n     Would you like to play?{default_color}"
+    print(f"{green_color}\n     Would you like to play?{default_color}"
           "(y/n): ", end="")
     while True:
         choice = input()
@@ -228,7 +234,7 @@ def play_again(player_name):
     """
     while True:
         try:
-            print(f"        Would you like to play again {player_name}? y/n")
+            print(f"\n        Would you like to play again {player_name}? y/n")
             choice = input()
 
             if choice == "y" or choice == "Y":
@@ -290,8 +296,7 @@ def main():
         clear_terminal()
 
         if check_winner(board, "X"):
-            print_board(board)
-            print(indent + f"{green_color}\n"
+            print(f"{green_color}"
                   "██╗░░░██╗██╗░█████╗░████████╗░█████╗░██████╗░██╗░░░██╗██╗\n"
                   "██║░░░██║██║██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗╚██╗░██╔╝██║\n"
                   "╚██╗░██╔╝██║██║░░╚═╝░░░██║░░░██║░░██║██████╔╝░╚████╔╝░██║\n"
@@ -303,7 +308,7 @@ def main():
             break
         if check_tie(board):
             print_board(board)
-            print("        ITS A TIE!!")
+            cprint("ITS A TIE!!")
             play_again(player_name)
             break
 
@@ -311,12 +316,12 @@ def main():
         print_board(board)
         if check_tie(board):
             print_board(board)
-            print("          ITS A TIE!!")
+            cprint("ITS A TIE!!")
             break
         if check_winner(board, "𝖮"):
             clear_terminal()
             print_board(board)
-            print(f"\n{red_color}           𝔾𝔸𝕄𝔼 𝕆𝕍𝔼ℝ ❕{default_color}\n")
+            print(indent + f"\n{red_color}𝔾𝔸𝕄𝔼 𝕆𝕍𝔼ℝ❕{default_color}")
             play_again(player_name)
             break
 
