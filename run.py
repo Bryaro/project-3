@@ -249,7 +249,7 @@ def play_again(player_name):
     """
     while True:
         try:
-            print(f"\n\n\n{indent}Would you like to play again {player_name}? y/n")
+            print(f"\n\n\n{indent}Wanna play again {player_name}? y/n")
             choice = input()
 
             if choice == "y" or choice == "Y":
@@ -316,7 +316,8 @@ def main():
         if check_winner(board, "X"):
             print("\n\n\n")
             print(indent + f"{green_color}" "█░█ █ █▀▀ ▀█▀ █▀█ █▀█ █▄█ █")
-            print(indent + f"{green_color}▀▄▀ █ █▄▄ ░█░ █▄█ █▀▄ ░█░ ▄{default_color}")
+            print(indent +
+                  f"{green_color}▀▄▀ █ █▄▄ ░█░ █▄█ █▀▄ ░█░ ▄{default_color}")
 
             play_again(player_name)
             break
