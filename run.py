@@ -95,7 +95,7 @@ def player_turn(board, player_name):
                 print("\n                cell already taken. Try again\n")
         except (ValueError, IndexError):
             # Handle invalid input or out-of-range selections
-            print("                You typed invalid data, "
+            print(indent + "You typed invalid data, "
                   "Type only a number bewteen 1-9\n")
 
 
@@ -218,24 +218,24 @@ def game_menu():
     clear_terminal()
     print("\n\n" + indent + f"{green_color}" "█░█░█ █▀▀ █░░ █▀▀ █▀█ █▀▄▀█ █▀▀")
     print(indent + f"{green_color}" "▀▄▀▄▀ ██▄ █▄▄ █▄▄ █▄█ █░▀░█ ██▄\n")
-    print(indent + f"{green_color}""        TIC-TAC-TOE GAME")
-    print(f"{red_color}\n     Rules:{default_color}\n")
-    print("     - You are X, Computer is 𝖮.")
-    print("     - You can only chose a number from 1-9.")
-    print("     - Chose only one area with a number each turn.")
-    print("     - You cant chose an area already filled with 𝖮 or X.")
-    print("     - 3 in row, line or diagonal wins the game")
-    print(f"{green_color}\n     Would you like to play?{default_color}"
+    print(indent + f"{green_color}""        TIC-TAC-TOE GAME\n")
+    print(f"{indent}{red_color}Rules:\n{default_color}")
+    print(indent + "- You are X, Computer is 𝖮.")
+    print(indent + "- You can only chose a number from 1-9.")
+    print(indent + "- Chose only one area with a number each turn.")
+    print(indent + "- You cant chose an area already filled with 𝖮 or X.")
+    print(indent + "- 3 in row, line or diagonal wins the game\n")
+    print(f"{indent}{green_color}Would you like to play?{default_color}"
           "(y/n): ", end="")
     while True:
         choice = input()
         if choice == 'y' or choice == "Y":
             main()
         if choice == "n" or choice == "N":
-            print("     Thanks for playing! Goodbye.")
+            print(indent + "Thanks for playing! Goodbye.")
             exit()
         if choice != 'y' or choice != "n":
-            print("     Incorrect type. Please type y or n")
+            print(indent + "Incorrect type. Please type y or n")
 
 
 def play_again(player_name):
@@ -250,7 +250,7 @@ def play_again(player_name):
     """
     while True:
         try:
-            print(f"\n        Would you like to play again {player_name}? y/n")
+            print(f"\n\n\n{indent}Would you like to play again {player_name}? y/n")
             choice = input()
 
             if choice == "y" or choice == "Y":
@@ -263,7 +263,7 @@ def play_again(player_name):
                 exit()
             else:
                 print(
-                    f"{red_color}invalid input.{default_color}"
+                    f"{red_color}{indent}invalid input.{default_color}"
                     f" Type {green_color}y for yes{default_color},"
                     f" and{green_color} n for No{default_color}")
         except (ValueError, IndexError):
@@ -302,8 +302,8 @@ def main():
     Runs till the game ends.
     No arguments or return values. Calls other functions to manage game flow.
     """
-    player_name = create_player_name()
     clear_terminal()
+    player_name = create_player_name()
     board = create_board()
     print_board(board)
     computer_move = choose_difficulty()
@@ -329,7 +329,7 @@ def main():
         if check_tie(board):
             print_board(board)
             print("")
-            print(indent + "ITS A TIE!!")
+            print(board_indent + "ITS A TIE!!")
             play_again(player_name)
             break
 
@@ -339,7 +339,7 @@ def main():
             clear_terminal()
             print_board(board)
             print("")
-            print(indent + f"{red_color}𝔾𝔸𝕄𝔼 𝕆𝕍𝔼ℝ❕{default_color}")
+            print(board_indent + f"{red_color}𝔾𝔸𝕄𝔼 𝕆𝕍𝔼ℝ❕{default_color}")
             play_again(player_name)
             break
 
