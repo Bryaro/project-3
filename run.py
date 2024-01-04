@@ -1,17 +1,18 @@
 import random
 import os
 
-
+# Define ANSI color codes for terminal text coloring
 green_color = "\033[92m"
 red_color = "\033[91m"
 default_color = "\033[0m"
 
-
+# Define indentation constants for formatting output
 indent = "\t\t\t"
 board_indent = "\t\t\t\t\t"
 
 
 def create_board():
+    # Initialize an empty list to represent the Tic-Tac-Toe board
     """
     Create and return a 3x3 Tic-Tac-Toe board numbered from 1 to 9.
     Each cell of the grid is filled with a number, starting from 1 in the
@@ -23,12 +24,12 @@ def create_board():
     board = []
     cell_number = 1
 
-    for i in range(3):
+    for i in range(3):  # Loop to create each row of the board
         row = []
         for j in range(3):
             row.append(cell_number)
             cell_number += 1
-        board.append(row)
+        board.append(row)  # Add the completed row to the board
 
     return board
 
@@ -44,7 +45,7 @@ def print_board(board):
     and each number is representing a cell
     """
     row_counter = 0
-    print(" ")
+    print("\n\n\n")
     for row in board:
         print(board_indent + " ┃ ".join(str(cell) for cell in row))
         row_counter += 1  # Increment the row counter after printing each row
@@ -58,7 +59,7 @@ def create_player_name():
     Validates that the name is a string and no longer than 15 characters.
     """
     while True:
-        player_name = input(indent + "\n\n\n        Enter your name "
+        player_name = input(indent + "\n\n     Enter your name "
                             "(up to 15 characters, no numbers): ")
         if player_name.isalpha() and len(player_name) <= 15:
             return player_name
@@ -81,17 +82,19 @@ def player_turn(board, player_name):
     while True:
         try:
             turn = int(input(
-                f"\n                {player_name}'s turn."
+                f"\n{indent}{player_name}'s turn."
                 " Enter a number 1-9:\n"))
             row = (turn - 1) // 3
             col = (turn - 1) % 3
 
+        # Check if the selected cell is unoccupied
             if board[row][col] == turn:
-                board[row][col] = "X"
+                board[row][col] = "X"  # Mark cell with 'X' for player's move
                 break
             else:
                 print("\n                cell already taken. Try again\n")
         except (ValueError, IndexError):
+            # Handle invalid input or out-of-range selections
             print("                You typed invalid data, "
                   "Type only a number bewteen 1-9\n")
 
@@ -99,7 +102,7 @@ def player_turn(board, player_name):
 def computer_turn(board):
     """
     Create computer turn
-    This function randomly selects a cell on the board for the computer's turn.
+    Randomly selects a cell on the board for the computer's turn.
     If the random selected cell is unoccupied, it marks the cell with '𝖮'.
     """
     while True:
@@ -118,6 +121,7 @@ def computer_turn_hard(board):
     Checks for two occupied cell in row or in column.
     Fills the third unoccupied cell with "𝖮"
     """
+    # Check each column for a potential winning or blocking opportunity
     for col in range(3):
         column = [board[row][col] for row in range(3)]
 
@@ -126,6 +130,8 @@ def computer_turn_hard(board):
                 if isinstance(board[row][col], int):
                     board[row][col] = "𝖮"
                     return
+
+    # Check each row for a potential winning or blocking opportunity
     for row in board:
         if row.count("X") == 2 or row.count("𝖮") == 2:
             for i in range(3):
@@ -182,6 +188,7 @@ def check_tie(board):
     cell_count = 0
     for row in board:
         for cell in row:
+            # Increment count for each cell occupied by 'X' or '𝖮'
             if cell == "X" or cell == "𝖮":
                 cell_count += 1
     return cell_count == 9
@@ -272,8 +279,10 @@ def choose_difficulty():
         function: Computer turn function based on difficulty level.
     """
     while True:
+        clear_terminal()
         print("\n           Choose the difficulty level!")
-        print("\n           ( 1 for Easy, 2 for Hard )")
+        print("\n           - 1 for Easy")
+        print("\n           - 2 for Hard")
         choice = input(indent + "\n           Enter 1 or 2: ")
         if choice == "1":
             clear_terminal()
@@ -299,8 +308,8 @@ def main():
     print_board(board)
     computer_move = choose_difficulty()
     print_board(board)
-    print(f"\n                WELCOME {player_name} !")
-    print("                HAVE FUN AND GOOD LUCK !")
+    print(f"\n{indent}WELCOME {player_name} !")
+    print(indent + "HAVE FUN AND GOOD LUCK !")
     while True:
         player_turn(board, player_name)
         clear_terminal()
