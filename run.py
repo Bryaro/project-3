@@ -8,7 +8,7 @@ default_color = "\033[0m"
 
 # Define indentation constants for formatting output
 indent = "\t\t\t"
-board_indent = "\t\t\t\t\t"
+board_indent = "\t\t\t\t"
 
 
 def create_board():
