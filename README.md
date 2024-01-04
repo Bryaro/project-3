@@ -2,7 +2,7 @@
 
 Welcome to our Tic-Tac-Toe game! [Play here](https://bryar-2a68c072830e.herokuapp.com/)
 
-It's a fun game, and you can play on your computer vs the computer
+It's a fun game, and you can play on your computer vs the computer.
 This TIC-TAC-TOE is a Python terminal game.
 Runs in the terminal and offers a quick and fun tic-tac-toe experience.
 Players can enjoy a game against a computer opponent.
@@ -51,7 +51,7 @@ With this terminal Tic-Tac-Toe , you can enjoy the 3x3 grid. The colors and grid
 - Checks for choices or moves already made
 - Rturns result of game (winner, Tie or gameover)
 - Gives player to play again or exit:
-Game runs in loop for till user exits
+Game runs in loop till user exits
 
 
 ### Menu features
