@@ -66,7 +66,8 @@ def create_player_name():
         if player_name.isalpha() and len(player_name) <= 15:
             return player_name
         else:
-            print("     Invalid name. "
+            clear_terminal()
+            print(f"     Invalid name. "
                   "Please enter your name with Maximum of 15 letters.")
 
 
