@@ -8,6 +8,7 @@ default_color = "\033[0m"
 
 
 indent = "\t\t\t"
+board_indent = "\t\t\t\t"
 
 
 def create_board():
@@ -45,10 +46,10 @@ def print_board(board):
     row_counter = 0
     print(" ")
     for row in board:
-        print(indent + " ┃ ".join(str(cell) for cell in row))
+        print(board_indent + " ┃ ".join(str(cell) for cell in row))
         row_counter += 1  # Increment the row counter after printing each row
-        if row_counter < 3:  # Only print separator if it's not the last row
-            print(indent + "━" + "━╋━" + "━" + "━╋━━")
+        if row_counter < 3:  # Only print separator if it's not the last     row
+            print(board_indent + "━" + "━╋━" + "━" + "━╋━━")
 
 
 def create_player_name():
