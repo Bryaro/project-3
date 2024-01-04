@@ -7,7 +7,7 @@ red_color = "\033[91m"
 default_color = "\033[0m"
 
 # Define indentation constants for formatting output
-indent = "\t\t\t"
+indent = "\t\t"
 board_indent = "\t\t\t\t"
 
 
@@ -59,13 +59,12 @@ def create_player_name():
     Validates that the name is a string and no longer than 15 characters.
     """
     while True:
-        player_name = input(indent + "\n\n     Enter your name "
-                            "(up to 15 characters, no numbers): ")
+        player_name = input(indent + "\n\n     Enter your name ")
         if player_name.isalpha() and len(player_name) <= 15:
             return player_name
         else:
             print("     Invalid name. "
-                  "Please enter your name with Maximum of 15 characters.")
+                  "Please enter your name with Maximum of 15 letters.")
 
 
 def player_turn(board, player_name):
@@ -316,14 +315,9 @@ def main():
 
         if check_winner(board, "X"):
             print("\n\n\n")
-            print(f"{green_color}"
-                  "██╗░░░██╗██╗░█████╗░████████╗░█████╗░██████╗░██╗░░░██╗██╗\n"
-                  "██║░░░██║██║██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗╚██╗░██╔╝██║\n"
-                  "╚██╗░██╔╝██║██║░░╚═╝░░░██║░░░██║░░██║██████╔╝░╚████╔╝░██║\n"
-                  "░╚████╔╝░██║██║░░██╗░░░██║░░░██║░░██║██╔══██╗░░╚██╔╝░░╚═╝\n"
-                  "░░╚██╔╝░░██║╚█████╔╝░░░██║░░░╚█████╔╝██║░░██║░░░██║░░░██╗\n"
-                  "░░░╚═╝░░░╚═╝░╚════╝░░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝\n"
-                  f"{default_color}")
+            print(indent + f"{green_color}" "█░█ █ █▀▀ ▀█▀ █▀█ █▀█ █▄█ █")
+            print(indent + f"{green_color}▀▄▀ █ █▄▄ ░█░ █▄█ █▀▄ ░█░ ▄{default_color}")
+
             play_again(player_name)
             break
         if check_tie(board):
