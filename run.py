@@ -219,7 +219,8 @@ def game_menu():
     input prompts and print statements.
     """
     clear_terminal()
-    print("\n\n" + indent + f"{green_color}" "█░█░█ █▀▀ █░░ █▀▀ █▀█ █▀▄▀█ █▀▀")
+    print("\n\n" + indent + f"{green_color}"
+          "█░█░█ █▀▀ █░░ █▀▀ █▀█ █▀▄▀█ █▀▀")
     print(indent + f"{green_color}" "▀▄▀▄▀ ██▄ █▄▄ █▄▄ █▄█ █░▀░█ ██▄\n")
     print(indent + f"{green_color}""        TIC-TAC-TOE GAME\n")
     print(f"{text_indent}{red_color}Rules:\n{default_color}")
@@ -318,7 +319,8 @@ def main():
         clear_terminal()
 
         if check_winner(board, "X"):
-            print(ten_n + indent + f"{green_color}" "█░█ █ █▀▀ ▀█▀ █▀█ █▀█ █▄█ █")
+            print(ten_n + indent + f"{green_color}"
+                  "█░█ █ █▀▀ ▀█▀ █▀█ █▀█ █▄█ █")
             print(indent +
                   f"{green_color}▀▄▀ █ █▄▄ ░█░ █▄█ █▀▄ ░█░ ▄{default_color}")
 
