@@ -8,7 +8,7 @@ default_color = "\033[0m"
 
 # Define indentation constants for formatting output
 text_indent = "\t\t"
-indent = "\t\t" * 2
+indent = "\t" * 2
 board_indent = "\t\t\t\t"
 
 ten_n = "\n" * 10
@@ -318,7 +318,7 @@ def main():
 
         if check_winner(board, "X"):
             print("\n\n\n")
-            print(indent + f"{green_color}" "█░█ █ █▀▀ ▀█▀ █▀█ █▀█ █▄█ █")
+            print(ten_n + indent + f"{green_color}" "█░█ █ █▀▀ ▀█▀ █▀█ █▀█ █▄█ █")
             print(indent +
                   f"{green_color}▀▄▀ █ █▄▄ ░█░ █▄█ █▀▄ ░█░ ▄{default_color}")
 
