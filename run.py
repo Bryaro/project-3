@@ -10,13 +10,6 @@ default_color = "\033[0m"
 indent = "\t\t\t"
 
 
-def cprint(text):
-    """
-    Custom print function to automatically center text within 80 characters.
-    """
-    print(text.center(80))
-
-
 def create_board():
     """
     Create and return a 3x3 Tic-Tac-Toe board numbered from 1 to 9.
@@ -64,11 +57,13 @@ def create_player_name():
     Validates that the name is a string and no longer than 15 characters.
     """
     while True:
-        player_name = input("\n     Enter your name (up to 15 characters, no numbers): ")
+        player_name = input(indent + "\n     Enter your name "
+                            "(up to 15 characters, no numbers): ")
         if player_name.isalpha() and len(player_name) <= 15:
             return player_name
         else:
-            print("     Invalid name. Please enter your name with Maximum of 15 characters.")
+            print("     Invalid name. "
+                  "Please enter your name with Maximum of 15 characters.")
 
 
 def player_turn(board, player_name):
@@ -213,15 +208,15 @@ def game_menu():
     input prompts and print statements.
     """
     clear_terminal()
-    print(indent + f"{green_color}" "█░█░█ █▀▀ █░░ █▀▀ █▀█ █▀▄▀█ █▀▀")
+    print("\n\n" + indent + f"{green_color}" "█░█░█ █▀▀ █░░ █▀▀ █▀█ █▀▄▀█ █▀▀")
     print(indent + f"{green_color}" "▀▄▀▄▀ ██▄ █▄▄ █▄▄ █▄█ █░▀░█ ██▄\n")
     print(indent + f"{green_color}""        TIC-TAC-TOE GAME")
-    print(f"{red_color}\n     Rules:{default_color}")
-    print("     You are X, Computer is 𝖮.")
-    print("     You can only chose a number from 1-9.")
-    print("     Chose only one area with a number each turn.")
-    print("     You cant chose an area already filled with 𝖮 or X.")
-    print("     3 in row, line or diagonal wins the game")
+    print(f"{red_color}\n     Rules:{default_color}\n")
+    print("     - You are X, Computer is 𝖮.")
+    print("     - You can only chose a number from 1-9.")
+    print("     - Chose only one area with a number each turn.")
+    print("     - You cant chose an area already filled with 𝖮 or X.")
+    print("     - 3 in row, line or diagonal wins the game")
     print(f"{green_color}\n     Would you like to play?{default_color}"
           "(y/n): ", end="")
     while True:
@@ -277,8 +272,8 @@ def choose_difficulty():
     """
     while True:
         print("\n           Choose the difficulty level!")
-        print("\n           1 for Easy, 2 for Hard ")
-        choice = input("\n           Enter 1 or 2: ")
+        print("\n           ( 1 for Easy, 2 for Hard )")
+        choice = input(indent + "\n           Enter 1 or 2: ")
         if choice == "1":
             clear_terminal()
             return computer_turn
@@ -286,7 +281,7 @@ def choose_difficulty():
             clear_terminal()
             return computer_turn_hard
         else:
-            print("           invalid choice")
+            print("\n           invalid choice")
 
 
 def main():
@@ -303,12 +298,14 @@ def main():
     print_board(board)
     computer_move = choose_difficulty()
     print_board(board)
-    print("\n                HAVE FUN AND GOOD LUCK !\n")
+    print(f"\n                WELCOME {player_name} !")
+    print("                HAVE FUN AND GOOD LUCK !")
     while True:
         player_turn(board, player_name)
         clear_terminal()
 
         if check_winner(board, "X"):
+            print("\n\n\n")
             print(f"{green_color}"
                   "██╗░░░██╗██╗░█████╗░████████╗░█████╗░██████╗░██╗░░░██╗██╗\n"
                   "██║░░░██║██║██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗╚██╗░██╔╝██║\n"
@@ -321,20 +318,18 @@ def main():
             break
         if check_tie(board):
             print_board(board)
-            cprint("ITS A TIE!!")
+            print("")
+            print(indent + "ITS A TIE!!")
             play_again(player_name)
             break
 
         computer_move(board)
         print_board(board)
-        if check_tie(board):
-            print_board(board)
-            cprint("ITS A TIE!!")
-            break
         if check_winner(board, "𝖮"):
             clear_terminal()
             print_board(board)
-            print(indent + f"\n{red_color}𝔾𝔸𝕄𝔼 𝕆𝕍𝔼ℝ❕{default_color}")
+            print("")
+            print(indent + f"{red_color}𝔾𝔸𝕄𝔼 𝕆𝕍𝔼ℝ❕{default_color}")
             play_again(player_name)
             break
 
