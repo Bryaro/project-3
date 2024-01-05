@@ -255,7 +255,8 @@ def play_again(player_name):
     """
     while True:
         try:
-            print(f"\n\n\n{indent}Wanna play again {player_name}? y/n", end="")
+            print(f"\n\n\n{indent}Wanna play again {player_name}? y/n:"
+                  " ", end="")
             choice = input()
 
             if choice == "y" or choice == "Y":
