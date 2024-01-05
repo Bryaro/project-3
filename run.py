@@ -84,6 +84,8 @@ def player_turn(board, player_name):
     Updates the board with the player's move. No return value.
     """
     while True:
+        clear_terminal()
+        print_board(board)
         try:
             turn = int(input(
                 f"\n{indent}{player_name}'s turn."
@@ -96,11 +98,13 @@ def player_turn(board, player_name):
                 board[row][col] = "X"  # Mark cell with 'X' for player's move
                 break
             else:
-                print("\n                cell already taken. Try again\n")
+                print(indent + "cell already taken. Try again")
+                time.sleep(2)
         except (ValueError, IndexError):
             # Handle invalid input or out-of-range selections
             print(indent + "You typed invalid data, "
                   "Type only a number between 1-9\n")
+            time.sleep(2)
 
 
 def computer_turn(board):
@@ -237,10 +241,13 @@ def game_menu():
         if choice == 'y' or choice == "Y":
             main()
         if choice == "n" or choice == "N":
-            print(text_indent + "Thanks for playing! Goodbye.")
+            print(text_indent + "Goodbye !")
             exit()
         if choice != 'y' or choice != "n":
             print(text_indent + "Incorrect type. Please type y or n")
+            time.sleep(2)
+            clear_terminal()
+            game_menu()
 
 
 def play_again(player_name):
