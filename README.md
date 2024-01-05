@@ -143,6 +143,12 @@ Terminal Clearing
 Game Exit
 - Test Case: Exit the game from the main menu.
 - Expected Result: The game should close without errors.
+
+Terminal Testing:
+To ensure the game's optimal performance and user experience, testing was conducted on two different terminals:
+- Local Development: The game was thoroughly tested on my local GitPod terminal, ensuring smooth operation and consistent behavior across various test scenarios.
+- Deployment Environment: Additional testing was carried out on the Code Institute's Heroku terminal. This step was crucial to verify the game's functionality in a live environment, mirroring real-world usage conditions.
+
 ---
 ***Here is a table of the testing below:***
 
@@ -150,8 +156,8 @@ Game Exit
 |-------------|-------------------------------------------------|--------------------------------------|----------------------------------------------------|
 | 1           | Game Initialization                             | Start the game                       | Main menu loads with options                       |
 | 2           | Display and Color Codes                         | Observe terminal                     | Correct colors and clear layout                    |
-| 3           | Player Name Input                               | Enter various names                  | Accepts valid names, rejects invalid inputs       |
-| 4           | Game Board Creation                             | Start new game                       | 3x3 grid displayed correctly                       |
+| 3           | Player Name Input                               | Enter name                  | Accepts valid names, rejects invalid inputs       |
+| 4           | Game Board Creation                             | Play game                       | 3x3 grid displayed correctly                       |
 | 5           | Player Turn                                     | Enter cell numbers (valid/invalid)   | Accepts 1-9 for unoccupied cells, prompts otherwise|
 | 6           | Computer Turn                                   | Observe computer's move              | 'O' placed in an unoccupied cell                   |
 | 7           | Difficulty Levels                               | Play on Easy and Hard                | Easy is random, Hard is strategic                  |
